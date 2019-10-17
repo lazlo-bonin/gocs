@@ -1,8 +1,8 @@
-﻿using Ludiq.Recs.Examples.Zones;
+﻿using Lazlo.Recs.Examples.Zones;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Ludiq.Recs.Examples.Interaction
+namespace Lazlo.Recs.Examples.Interaction
 {
 	public sealed class Zone : BaseComponent, IZone
 	{

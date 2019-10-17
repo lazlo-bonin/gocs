@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Ludiq.Recs.Examples.Interaction
+namespace Lazlo.Recs.Examples.Interaction
 {
 	public sealed class Interactable : BaseComponent, IInteractable
 	{

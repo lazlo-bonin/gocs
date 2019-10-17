@@ -1,6 +1,6 @@
 {
     "name": "dev.lazlo.recs",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "displayName": "RECS",
     "description": "Relaxed ECS for Unity.",
     "unity": "2018.4",

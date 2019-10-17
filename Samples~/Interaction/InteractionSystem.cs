@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ludiq.Recs.Examples.Interaction
+namespace Lazlo.Recs.Examples.Interaction
 {
 	public sealed class InteractionSystem : BaseSystem
 	{

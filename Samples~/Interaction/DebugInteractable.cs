@@ -1,9 +1,9 @@
-﻿using Ludiq.Recs;
-using Ludiq.Recs.Examples.Interaction;
+﻿using Lazlo.Recs;
+using Lazlo.Recs.Examples.Interaction;
 using UnityEngine;
-using Event = Ludiq.Recs.Event;
+using Event = Lazlo.Recs.Event;
 
-namespace Ludiq.RecsExamples.Interaction
+namespace Lazlo.RecsExamples.Interaction
 {
 	public sealed class DebugInteractable : BaseComponent, IInteractable
 	{

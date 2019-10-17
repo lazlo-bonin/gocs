@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ludiq.Recs.Examples.Zones
+namespace Lazlo.Recs.Examples.Zones
 {
 	public interface IZone : IComponent
 	{
