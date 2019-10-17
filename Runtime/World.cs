@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ludiq.Recs
+namespace Lazlo.Recs
 {
 	public static class World
 	{

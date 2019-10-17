@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ludiq.Recs
+namespace Lazlo.Recs
 {
 	public sealed class CollisionEventProxy : BaseComponent, ICollisionEventProxy
 	{

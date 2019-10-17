@@ -2,7 +2,7 @@
     "name": "dev.lazlo.recs",
     "version": "0.1.0",
     "displayName": "RECS",
-    "description": "Relaxed ECS",
+    "description": "Relaxed ECS for Unity.",
     "unity": "2018.4",
     "dependencies": { },
     "keywords": [
@@ -24,12 +24,12 @@
         {
             "displayName": "Interaction",
             "description": "Use RECS to handle hovering and clicking interactable objects.",
-            "path": "Samples~/Recs.Sample.Interaction"
+            "path": "Samples~/Interaction"
         },
         {
             "displayName": "Zones",
-            "description": "Use RECS to handle entering and exiting zones",
-            "path": "Samples~/Recs.Sample.Zones"
+            "description": "Use RECS to handle entering and exiting zones.",
+            "path": "Samples~/Zones"
         }
     ]
   }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ludiq.Recs
+namespace Lazlo.Recs
 {
 	public sealed class SystemEvents<TArgs>
 	{

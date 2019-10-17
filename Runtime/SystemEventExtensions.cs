@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ludiq.Recs
+namespace Lazlo.Recs
 {
 	// Just inverts the calling order to improve readability.
 	public static class SystemEventsExtensions

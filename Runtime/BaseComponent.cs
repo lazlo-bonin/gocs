@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Ludiq.Recs
+namespace Lazlo.Recs
 {
 	public abstract class BaseComponent : MonoBehaviour, IComponent
 	{

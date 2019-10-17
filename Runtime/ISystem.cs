@@ -1,4 +1,4 @@
-﻿namespace Ludiq.Recs
+﻿namespace Lazlo.Recs
 {
 	public interface ISystem
 	{

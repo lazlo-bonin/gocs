@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ludiq.Recs
+namespace Lazlo.Recs
 {
 	// Credit: Tor Vestergaard
 	public class FastTypeComparer : IEqualityComparer<Type>
