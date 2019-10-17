@@ -1,0 +1,35 @@
+{
+    "name": "dev.lazlo.recs",
+    "version": "0.1.0",
+    "displayName": "RECS",
+    "description": "Relaxed ECS",
+    "unity": "2018.4",
+    "dependencies": { },
+    "keywords": [
+        "recs",
+        "ecs",
+        "relaxed",
+        "pattern",
+        "framework",
+        "ioc",
+        "oop",
+        "events"
+    ],
+    "author": {
+        "name": "Lazlo Bonin",
+        "email": "hello@lazlo.dev",
+        "url": "https://lazlo.dev"
+    },
+    "samples": [
+        {
+            "displayName": "Interaction",
+            "description": "Use RECS to handle hovering and clicking interactable objects.",
+            "path": "Samples~/Recs.Sample.Interaction"
+        },
+        {
+            "displayName": "Zones",
+            "description": "Use RECS to handle entering and exiting zones",
+            "path": "Samples~/Recs.Sample.Zones"
+        }
+    ]
+  }
