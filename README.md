@@ -485,7 +485,7 @@ interface IDamageable : IComponent
 
 Unity's event system is limited because it does not allow external objects to add event handlers.
 
-For example, you cannot listen to a collider's `OnTriggerEnter` event unless you create a MonoBehaviour script on the *same* GameObject.
+For example, you cannot listen to a collider's `OnCollisionEnter` event unless you create a MonoBehaviour script on the *same* GameObject.
 
 This is problematic for GOCS, because your Systems don't live on the same GameObject as your Components, and yet they are reponsible for event dispatch.
 
@@ -524,9 +524,7 @@ public sealed class CollisionEventProxy : BaseComponent, ICollisionEventProxy
 }
 ```
 
-For example, let's say you wanted to implement a procedural destruction system with GOCS. When objects with the `IDestructible` component collide with enough force, then the `DestructionSystem` system should break them to pieces and send back an `onDestroy` event.
-
-We'll just show a basic skeleton of how to use `CollisionEventProxy` for that purpose. 
+Let's say you wanted to implement a procedural destruction system with GOCS. When objects with the `IDestructible` component collide with enough force, then the `DestructionSystem` system should break them to pieces and send back an `onDestroy` event. We'll need to to use `CollisionEventProxy` for that purpose. 
 
 First, your component must require the proxy:
 
@@ -539,9 +537,7 @@ interface IDestructible : IComponent
 }
 ```
 
-Then, your system must add and remove listeners to the collision events in its `AddComponent` and `RemoveComponent` phases. 
-
-The system will also need to use the `SystemEvents` helper to assign its event handlers. This is a common pattern with GOCS:
+Then, your system must add and remove listeners to the collision events in its `AddComponent` and `RemoveComponent` phases. To do so, we'll use `SystemEvents` helper. This is a common pattern with GOCS:
 
 ```csharp
 class DestructionSystem : BaseSystem
