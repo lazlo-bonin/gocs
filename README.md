@@ -537,7 +537,7 @@ interface IDestructible : IComponent
 }
 ```
 
-Then, your system must add and remove listeners to the collision events in its `AddComponent` and `RemoveComponent` phases. To do so, we'll use `SystemEvents` helper. This is a common pattern with GOCS:
+Then, your system must add and remove listeners to the collision events in its `AddComponent` and `RemoveComponent` phases. To do so, we'll use a `SystemEvents` helper. This is a common pattern with GOCS:
 
 ```csharp
 class DestructionSystem : BaseSystem
@@ -654,9 +654,9 @@ public abstract class MyBaseSystem: ISystem
 
 ## Mixing GOCS with OOP
 
-It's perfectly fine to mix GOCS with OOP. In fact, that's one of its main benefits! You should think of GOCS as another tool in your development toolbox, not as a pattern you have to use everywhere.
+It's perfectly fine to mix GOCS with OOP. In fact, that's one of its main benefits! You should think of GOCS as just another tool in your development toolbox, not as a pattern you *have* to use everywhere.
 
-For example, if you have a player controller class that works well as a self-contain, encapsulated object, then you should keep it that way. No need to split it into entities, components and systems unless it makes sense to you. As the saying goes, *if it ain't broke, don't fix it*.
+For example, if you have a player controller class that works well as a self-contained, encapsulated object, then you should keep it that way. No need to split it into entities, components and systems unless it makes sense to you. As the saying goes, *if it ain't broke, don't fix it*.
 
 Likewise, if you use an entire other architectural pattern for other parts of your codebase, for example model-view-component (MVC) for your GUI code, you don't need to convert that. GOCS can happily coexist in parallel of all your existing codebase.
 
@@ -764,7 +764,7 @@ GOCS follows a coding style similar to Unity's:
 
 ---
 
-GOCS is in early preview stages and is not yet considered to be production ready, so we reserve the right to make breaking API changes until then. I'm open to suggestions and appreciate bug reports. If you have any, just create a new issue on Github!
+GOCS is in early preview stages and is not yet considered to be production ready, so there may be breaking API changes until then. I'm open to suggestions and appreciate bug reports. If you have any, just create a new issue on Github!
 
 # Special Thanks
 
