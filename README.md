@@ -33,10 +33,10 @@ GOCS is a very lightweight framework imported from the Unity Package Manager.
 
 GOCS requires **Unity 2018.4** **or newer**.
 
-To import GOCS, open `Packages/packages.manifest` and add this line under `dependencies`:
+To import GOCS, open `Packages/manifest.json` and add this line under `dependencies`:
 
 ```json
-    "dev.lazlo.gocs": "https://github.com/lazlo-bonin/gocs.git"
+"dev.lazlo.gocs": "https://github.com/lazlo-bonin/gocs.git"
 ```
 
 All the GOCS API is under the `Lazlo.Gocs` namespace:
