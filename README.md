@@ -383,7 +383,7 @@ interface IRegenable : IComponent { }
 This will force the component to be added while in the editor. But if you don't need to configure any property on the required component, you might not want to pollute your game objects while authoring in the editor. This is often the case when using GOCS event proxies (see section below). In those cases, you can use GOCS' custom `[RuntimeRequireComponent]` attribute:
 
 ```csharp
-[RuntimeRequireComponent(typeof(CollisionEventProxy)]
+[RuntimeRequireComponent(typeof(CollisionEventProxy))]
 interface IZone : IComponent { }
 ```
 
@@ -549,7 +549,7 @@ class DestructionSystem : BaseSystem
 
     public override void AddComponent(IComponent c)
     {
-        if (c.gameObject.Has(out IDestructible destructible, out ICollisionEventProxy collidable)
+        if (c.gameObject.Has(out IDestructible destructible, out ICollisionEventProxy collidable))
         {
             // Add the system event handler
             collisionEvents[collidable.onCollisionEnter] = OnCollision(destructible, collision);
