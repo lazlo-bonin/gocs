@@ -487,7 +487,7 @@ For example, you cannot listen to a collider's `OnTriggerEnter` event unless you
 
 This is problematic for GOCS, because your Systems don't live on the same GameObject as your Components, and yet they are reponsible for event dispatch.
 
-To fix that issue, GOCS introduces something called **Event Proxies** (or just "proxies" for short). Proxies are small components packaged with GOCS that just forward the built-in Unity messages like  `OnCollisionEnter`, `OnTriggerEnter`, `OnTransformParentChanged`, etc. to normal RECS events that we can then use in our systems.
+To fix that issue, GOCS introduces something called **Event Proxies** (or just "proxies" for short). Proxies are small components packaged with GOCS that just forward the built-in Unity messages like  `OnCollisionEnter`, `OnTriggerEnter`, `OnTransformParentChanged`, etc. to normal GOCS events that we can then use in our systems.
 
 For example, here is how the collision event proxy is implemented behind the scenes:
 
@@ -539,7 +539,7 @@ interface IDestructible : IComponent
 
 Then, your system must add and remove listeners to the collision events in its `AddComponent` and `RemoveComponent` phases. 
 
-The system will also need to use the `SystemEvents` helper class to assign its event handlers. This is a common pattern with RECS:
+The system will also need to use the `SystemEvents` helper to assign its event handlers. This is a common pattern with GOCS:
 
 ```csharp
 class DestructionSystem : BaseSystem
@@ -670,7 +670,7 @@ There's no downside and very minimal overhead to having every component in your 
 // Don't implement IComponent yet, let the derived classes do that.
 public abstract class MyBaseComponent: MonoBehaviour
 {
-    // Forward to BaseImplementation if this is a RECS component.
+    // Forward to BaseImplementation if this is a GOCS component.
 
     protected virtual void Awake()
     {
