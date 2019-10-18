@@ -371,6 +371,8 @@ class InteractionSystem : BaseSystem
 
 Sometimes, components only make sense when coupled with other components.
 
+For example, an `IRegenable` component might always require a `IHealth` component.
+
 There are a few ways you can go about this.
 
 The most simple is to require a component to appear with another with Unity's built-in `[RequireComponent]` attribute:
@@ -384,19 +386,19 @@ This will force the component to be added while in the editor. But if you don't 
 
 ```csharp
 [RuntimeRequireComponent(typeof(CollisionEventProxy))]
-interface IZone : IComponent { }
+interface IDestructible : IComponent { }
 ```
 
-Finally, you can require components directly from the system, during the `AddComponent` phase. For example, if IZone components always need CollisionEventProxy components, you could do so using the `GetOrAddComponent` helper:
+Finally, you can require components directly from the system, during the `AddComponent` phase. For example, if `IDestructible` components always need a matching `CollisionEventProxy` component, you could do so using the `GetOrAddComponent` helper:
 
 ```csharp
 class ZoneSystem : BaseSystem
 {
     public override void AddComponent(IComponent component)
     {
-        if (component is IZone zone)
+        if (component is IDestructible destructible)
         {
-            var trigger = zone.gameObject.GetOrAddComponent<CollisionEventProxy>();
+            var collidable = destructible.gameObject.GetOrAddComponent<CollisionEventProxy>();
             // ...
         }
     }
