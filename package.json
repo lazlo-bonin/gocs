@@ -1,12 +1,12 @@
 {
-    "name": "dev.lazlo.recs",
+    "name": "dev.lazlo.gocs",
     "version": "0.1.1",
-    "displayName": "RECS",
-    "description": "Relaxed ECS for Unity.",
+    "displayName": "GOCS",
+    "description": "GameObject Component System for Unity.",
     "unity": "2018.4",
     "dependencies": { },
     "keywords": [
-        "recs",
+        "gocs",
         "ecs",
         "relaxed",
         "pattern",
@@ -23,12 +23,12 @@
     "samples": [
         {
             "displayName": "Interaction",
-            "description": "Use RECS to handle hovering and clicking interactable objects.",
+            "description": "Use GOCS to handle hovering and clicking interactable objects.",
             "path": "Samples~/Interaction"
         },
         {
             "displayName": "Zones",
-            "description": "Use RECS to handle entering and exiting zones.",
+            "description": "Use GOCS to handle entering and exiting zones.",
             "path": "Samples~/Zones"
         }
     ]

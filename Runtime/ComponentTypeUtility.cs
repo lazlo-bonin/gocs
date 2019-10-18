@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public static class ComponentTypeUtility
 	{

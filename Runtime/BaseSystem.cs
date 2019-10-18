@@ -1,27 +1,27 @@
 ﻿using UnityEngine;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public abstract class BaseSystem : MonoBehaviour, ISystem
 	{
 		protected virtual void Awake()
 		{
-			// Unused but reserved. Derived components should call this. 
+			BaseImplementation.SystemAwake(this);
 		}
 
 		protected virtual void OnEnable()
 		{
-			World.AddSystem(this);
+			BaseImplementation.SystemOnEnable(this);
 		}
 
 		protected virtual void OnDisable()
 		{
-			World.RemoveSystem(this);
+			BaseImplementation.SystemOnDisable(this);
 		}
 
 		protected virtual void OnDestroy()
 		{
-			// Unused but reserved. Derived components should call this. 
+			BaseImplementation.SystemOnDestroy(this);
 		}
 
 		public virtual void AddComponent(IComponent component) { }

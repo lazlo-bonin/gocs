@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public sealed class TriggerEventProxy : BaseComponent, ITriggerEventProxy
 	{

@@ -1,29 +1,27 @@
 ﻿using UnityEngine;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public abstract class BaseComponent : MonoBehaviour, IComponent
 	{
-		GameObject IComponent.entity => gameObject;
-
 		protected virtual void Awake()
 		{
-			RuntimeRequiredComponentUtility.AddRuntimeRequiredComponents(this);
+			BaseImplementation.ComponentAwake(this);
 		}
 
 		protected virtual void OnEnable()
 		{
-			World.AddComponent(this);
+			BaseImplementation.ComponentOnEnable(this);
 		}
 
 		protected virtual void OnDisable()
 		{
-			World.RemoveComponent(this);
+			BaseImplementation.ComponentOnDisable(this);
 		}
 
 		protected virtual void OnDestroy()
 		{
-			// Unused but reserved. Derived components should call this. 
+			BaseImplementation.ComponentOnDestroy(this);
 		}
 	}
 }

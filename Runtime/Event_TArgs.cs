@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public sealed class Event<TArgs>
 	{

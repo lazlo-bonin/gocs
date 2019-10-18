@@ -1,9 +1,7 @@
-﻿using Lazlo.Recs;
-using Lazlo.Recs.Examples.Interaction;
-using UnityEngine;
-using Event = Lazlo.Recs.Event;
+﻿using UnityEngine;
+using Event = Lazlo.Gocs.Event;
 
-namespace Lazlo.RecsExamples.Interaction
+namespace Lazlo.Gocs.Examples.Interaction
 {
 	public sealed class DebugInteractable : BaseComponent, IInteractable
 	{

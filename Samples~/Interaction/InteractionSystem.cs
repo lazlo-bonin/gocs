@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Lazlo.Recs.Examples.Interaction
+namespace Lazlo.Gocs.Examples.Interaction
 {
 	public sealed class InteractionSystem : BaseSystem
 	{
@@ -68,7 +68,7 @@ namespace Lazlo.Recs.Examples.Interaction
 		{
 			Gizmos.color = Color.magenta;
 
-			foreach (var interactable in World.Query<IInteractable>())
+			foreach (var interactable in World.EditorQuery<IInteractable>())
 			{
 				Gizmos.DrawWireSphere(interactable.transform.position, interactable.range);
 			}

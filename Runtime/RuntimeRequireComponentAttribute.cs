@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true, Inherited = false)]
 	public sealed class RuntimeRequireComponentAttribute : Attribute

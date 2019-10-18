@@ -1,4 +1,4 @@
-﻿namespace Lazlo.Recs.Examples.Interaction
+﻿namespace Lazlo.Gocs.Examples.Interaction
 {
 	public interface IInteractable : IComponent
 	{

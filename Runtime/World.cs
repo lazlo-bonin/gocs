@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public static class World
 	{
@@ -105,7 +105,7 @@ namespace Lazlo.Recs
 				}
 
 				componentsOfType.Add(component);
-				entitiesWithComponentsOfType.Add(component.entity);
+				entitiesWithComponentsOfType.Add(component.gameObject);
 			}
 		}
 
@@ -120,7 +120,7 @@ namespace Lazlo.Recs
 
 				if (entitiesByComponentType.TryGetValue(componentType, out var entitiesWithComponentsOfType))
 				{
-					entitiesWithComponentsOfType.Remove(component.entity);
+					entitiesWithComponentsOfType.Remove(component.gameObject);
 				}
 			}
 		}
@@ -192,6 +192,33 @@ namespace Lazlo.Recs
 			{
 				yield return entity.Get<T1, T2, T3>();
 			}
+		}
+
+		#endregion
+
+
+
+		#region Editor Queries
+
+		public static IEnumerable<T1> EditorQuery<T1>()
+			where T1 : IComponent
+		{
+			throw new NotImplementedException();
+		}
+
+		public static IEnumerable<(T1, T2)> EditorQuery<T1, T2>()
+			where T1 : IComponent
+			where T2 : IComponent
+		{
+			throw new NotImplementedException();
+		}
+
+		public static IEnumerable<(T1, T2, T3)> EditorQuery<T1, T2, T3>()
+			where T1 : IComponent
+			where T2 : IComponent
+			where T3 : IComponent
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

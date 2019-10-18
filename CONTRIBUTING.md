@@ -1,21 +1,29 @@
-MIT License
+# Forking & Contributing
 
-Copyright (c) 2019 Lazlo Bonin
+If you want to fork or contribute to GOCS, you can use the following setup to create a development project for the package.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Clone the GOCS repo or its fork inside an empty directory, for example `gocs_package`
+2. Create a new empty Unity project, for example `gocs_project`
+3. Symlink `gocs_package` to `gocs_project/Packages/gocs`:
+    - On Windows, you can use [Link Shell Extension](http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html) to create a **junction**
+    - On Mac, you can use the terminal (untested):
+    `ln -s /path/to/gocs_package/ /path/to/gocs_project/Packages/gocs`
+4. Changes you make to GOCS will be instantly compiled by Unity
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+### Coding Style
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+GOCS follows a coding style similar to Unity's:
+
+- Public fields and properties: `camelCase`
+- Private backing fields: `_camelCase`
+- Public methods: `PascalCase`
+- Constants: `PascalCase`
+- Allman bracing style
+- Tabs for indentation
+- 1 blank line between each member
+- 3 blank lines between each `#region`
+- Implicit `var` typing when possible
+
+---
+
+GOCS is in early preview stages and is not yet considered to be production ready, so we reserve the right to make breaking API changes until then. I'm open to suggestions and appreciate bug reports. If you have any, just create a new issue on Github!

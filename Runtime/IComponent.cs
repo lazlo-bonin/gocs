@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public interface IComponent
 	{
-		GameObject entity { get; }
+		GameObject gameObject { get; }
 
 		Transform transform { get; }
 	}

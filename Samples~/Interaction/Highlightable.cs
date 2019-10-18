@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Lazlo.Recs.Examples.Interaction
+namespace Lazlo.Gocs.Examples.Interaction
 {
 	[RequireComponent(typeof(Renderer))]
 	public class Highlightable : BaseComponent, IInteractable

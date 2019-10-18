@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Lazlo.Recs.Examples.Interaction
+namespace Lazlo.Gocs.Examples.Interaction
 {
 	public class Grabbable : BaseComponent, IInteractable
 	{

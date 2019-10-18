@@ -1,32 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lazlo.Recs
+namespace Lazlo.Gocs
 {
 	public sealed class SystemEvents<TArgs>
 	{
 		private readonly Dictionary<Event<TArgs>, Action<TArgs>> handlers = new Dictionary<Event<TArgs>, Action<TArgs>>();
 
-		public void AddHandler(Event<TArgs> @event, Action<TArgs> handler)
+		public Action<TArgs> this[Event<TArgs> @event]
 		{
-			if (@event == null)
+			get
 			{
-				return;
+				if (handlers.TryGetValue(@event, out var handler))
+				{
+					return handler;
+				}
+				else
+				{
+					return null;
+				}
 			}
-
-			@event.AddHandler(handler);
-			handlers.Add(@event, handler);
-		}
-
-		public void RemoveHandler(Event<TArgs> @event)
-		{
-			if (@event == null)
+			set
 			{
-				return;
-			}
+				if (@event == null)
+				{
+					return;
+				}
 
-			@event.RemoveHandler(handlers[@event]);
-			handlers.Remove(@event);
+				if (value != null)
+				{
+					if (handlers.ContainsKey(@event))
+					{
+						throw new InvalidOperationException("System events can only add one handler per event.");
+					}
+
+					@event.AddHandler(value);
+					handlers.Add(@event, value);
+				}
+				else if (value == null)
+				{
+					if (!handlers.TryGetValue(@event, out var handler))
+					{
+						return;
+					}
+					
+					@event.RemoveHandler(handler);
+					handlers.Remove(@event);
+				}
+			}
 		}
 	}
 }
