@@ -44,7 +44,7 @@ namespace Lazlo.Gocs
 			       go.TryGetComponent(out component4);
 		}
 
-		public static bool Has<T1, T2, T3, T4, T5>(this GameObject go, out T1 component1, out T2 component2, out T3 component3, out T4 component4, out T4 component5)
+		public static bool Has<T1, T2, T3, T4, T5>(this GameObject go, out T1 component1, out T2 component2, out T3 component3, out T4 component4, out T5 component5)
 		{
 			component1 = default;
 			component2 = default;

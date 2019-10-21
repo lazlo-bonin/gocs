@@ -12,8 +12,8 @@ namespace Lazlo.Gocs
         public RegistryMode mode { get; }
 
         private readonly HashSet<TComponent> components = new HashSet<TComponent>();
-        private readonly HashSet<GameObject> gameObjects = new HashSet<GameObject>();
-        private readonly Dictionary<GameObject, TComponent> map = new Dictionary<GameObject, TComponent>();
+        private readonly HashSet<GameObject> gameObjects = new HashSet<GameObject>(FastUnityObjectComparer<GameObject>.Instance);
+        private readonly Dictionary<GameObject, TComponent> map = new Dictionary<GameObject, TComponent>(FastUnityObjectComparer<GameObject>.Instance);
 
         private Registry()
         {
@@ -72,7 +72,11 @@ namespace Lazlo.Gocs
         {
             if (filter.pass == 0)
             {
-                filter.set.UnionWith(gameObjects);
+				// UnionWith would box the GameObjects HashSet into an IEnumerable
+                foreach (var gameObject in gameObjects)
+                {
+	                filter.set.Add(gameObject);
+                }
 
                 foreach (var component in components)
                 {
@@ -81,7 +85,24 @@ namespace Lazlo.Gocs
             }
             else
             {
-                filter.set.IntersectWith(gameObjects);
+	            // IntersectWith would box the GameObjects HashSet into an IEnumerable
+
+	            var toRemove = HashSetPool<GameObject>.New();
+
+	            foreach (var gameObject in filter.set)
+	            {
+		            if (!gameObjects.Contains(gameObject))
+		            {
+			            toRemove.Add(gameObject);
+		            }
+	            }
+
+	            foreach (var gameObject in toRemove)
+	            {
+		            filter.set.Remove(gameObject);
+	            }
+
+	            toRemove.Free();
 
                 foreach (var go in filter.set)
                 {

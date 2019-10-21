@@ -7,7 +7,7 @@ namespace Lazlo.Gocs
 {
     public sealed class QueryFilter : IPoolable, IDisposable, IEnumerable<GameObject>
     {
-        internal readonly HashSet<GameObject> set = new HashSet<GameObject>();
+        internal readonly HashSet<GameObject> set = new HashSet<GameObject>(FastUnityObjectComparer<GameObject>.Instance);
         internal readonly List<Dictionary<GameObject, object>> maps = new List<Dictionary<GameObject, object>>();
         internal int passes;
         internal int pass;
@@ -27,15 +27,10 @@ namespace Lazlo.Gocs
 
             for (var i = filter.maps.Count; i < passes; i++)
             {
-                filter.maps.Add(new Dictionary<GameObject, object>());
+                filter.maps.Add(new Dictionary<GameObject, object>(FastUnityObjectComparer<GameObject>.Instance));
             }
 
             return filter;
-        }
-
-        internal void Map(GameObject gameObject, object component)
-        {
-            maps[pass].Add(gameObject, component);
         }
 
         public int Pass<T>(bool forceNative)
@@ -48,6 +43,11 @@ namespace Lazlo.Gocs
             Registry<T>.instance.Filter(this, forceNative);
 
             return pass++;
+        }
+
+        internal void Map(GameObject gameObject, object component)
+        {
+	        maps[pass].Add(gameObject, component);
         }
 
         public T Result<T>(int pass, GameObject gameObject)
@@ -75,7 +75,12 @@ namespace Lazlo.Gocs
             }
         }
 
-        public IEnumerator<GameObject> GetEnumerator()
+        public HashSet<GameObject>.Enumerator GetEnumerator()
+        {
+	        return set.GetEnumerator();
+        }
+
+        IEnumerator<GameObject> IEnumerable<GameObject>.GetEnumerator()
         {
             return set.GetEnumerator();
         }

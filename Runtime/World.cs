@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 namespace Lazlo.Gocs
 {
@@ -124,10 +122,12 @@ namespace Lazlo.Gocs
 				foreach (var gameObject in filter)
 				{
 					result.Add
-					((
-						filter.Result<T1>(pass1, gameObject),
-						filter.Result<T2>(pass2, gameObject)
-					));
+					(
+						(
+							filter.Result<T1>(pass1, gameObject),
+							filter.Result<T2>(pass2, gameObject)
+						)
+					);
 				}
 
 				return result;
@@ -147,11 +147,13 @@ namespace Lazlo.Gocs
 				foreach (var gameObject in filter)
 				{
 					result.Add
-					((
-						filter.Result<T1>(pass1, gameObject),
-						filter.Result<T2>(pass2, gameObject),
-						filter.Result<T3>(pass3, gameObject)
-					));
+					(
+						(
+							filter.Result<T1>(pass1, gameObject),
+							filter.Result<T2>(pass2, gameObject),
+							filter.Result<T3>(pass3, gameObject)
+						)
+					);
 				}
 
 				return result;
@@ -172,12 +174,14 @@ namespace Lazlo.Gocs
 				foreach (var gameObject in filter)
 				{
 					result.Add
-					((
-						filter.Result<T1>(pass1, gameObject),
-						filter.Result<T2>(pass2, gameObject),
-						filter.Result<T3>(pass3, gameObject),
-						filter.Result<T4>(pass4, gameObject)
-					));
+					(
+						(
+							filter.Result<T1>(pass1, gameObject),
+							filter.Result<T2>(pass2, gameObject),
+							filter.Result<T3>(pass3, gameObject),
+							filter.Result<T4>(pass4, gameObject)
+						)
+					);
 				}
 
 				return result;
@@ -199,13 +203,15 @@ namespace Lazlo.Gocs
 				foreach (var gameObject in filter)
 				{
 					result.Add
-					((
-						filter.Result<T1>(pass1, gameObject),
-						filter.Result<T2>(pass2, gameObject),
-						filter.Result<T3>(pass3, gameObject),
-						filter.Result<T4>(pass4, gameObject),
-						filter.Result<T5>(pass5, gameObject)
-					));
+					(
+						(
+							filter.Result<T1>(pass1, gameObject),
+							filter.Result<T2>(pass2, gameObject),
+							filter.Result<T3>(pass3, gameObject),
+							filter.Result<T4>(pass4, gameObject),
+							filter.Result<T5>(pass5, gameObject)
+						)
+					);
 				}
 
 				return result;

@@ -29,7 +29,7 @@ namespace Lazlo.Gocs
                 throw new ArgumentNullException(nameof(component));
             }
 
-            foreach (var componentType in ComponentTypeUtility.GetComponentTypes(component.GetType()))
+            foreach (var componentType in ComponentTypeUtility.GetManagedComponentTypes(component.GetType()))
             {
                 yield return GetRegistry(componentType);
             }

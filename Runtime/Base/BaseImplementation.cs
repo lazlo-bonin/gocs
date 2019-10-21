@@ -13,21 +13,23 @@ namespace Lazlo.Gocs
 			{
 				RuntimeRequiredComponentUtility.AddRuntimeRequiredComponents(concreteComponent);
 			}
+
+			World.AddComponent(component);
 		}
 
 		public static void ComponentOnEnable(IComponent component)
 		{
-			World.AddComponent(component);
+			// Currently unused but reserved.
 		}
 
 		public static void ComponentOnDisable(IComponent component)
 		{
-			World.RemoveComponent(component);
+			// Currently unused but reserved.
 		}
 
 		public static void ComponentOnDestroy(IComponent component)
 		{
-			// Currently unused but reserved.
+			World.RemoveComponent(component);
 		}
 
 		#endregion
@@ -42,21 +44,23 @@ namespace Lazlo.Gocs
 			{
 				RuntimeRequiredComponentUtility.AddRuntimeRequiredComponents(concreteComponent);
 			}
+
+			World.AddSystem(system);
 		}
 
 		public static void SystemOnEnable(ISystem system)
 		{
-			World.AddSystem(system);
+			// Currently unused but reserved.
 		}
 
 		public static void SystemOnDisable(ISystem system)
 		{
-			World.RemoveSystem(system);
+			// Currently unused but reserved.
 		}
 
 		public static void SystemOnDestroy(ISystem system)
 		{
-			// Currently unused but reserved.
+			World.RemoveSystem(system);
 		}
 
 		#endregion
