@@ -23,9 +23,5 @@ namespace Lazlo.Gocs
 		{
 			BaseImplementation.SystemOnDestroy(this);
 		}
-
-		public virtual void AddComponent(IComponent component) { }
-
-		public virtual void RemoveComponent(IComponent component) { }
 	}
 }

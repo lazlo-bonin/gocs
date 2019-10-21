@@ -6,7 +6,7 @@ namespace Lazlo.Gocs
 {
 	public static class ComponentTypeUtility
 	{
-		private static readonly Dictionary<Type, Type[]> typeToComponentTypes = new Dictionary<Type, Type[]>(FastTypeComparer.Instance);
+		private static readonly Dictionary<Type, Type[]> typeToComponentTypes = new Dictionary<Type, Type[]>(ReferenceEqualityComparer<Type>.Instance);
 		
 		public static IEnumerable<Type> GetComponentTypes(Type type)
 		{

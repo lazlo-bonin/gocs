@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Lazlo.Gocs
@@ -19,9 +20,12 @@ namespace Lazlo.Gocs
 				throw new ArgumentNullException(nameof(system));
 			}
 
-			foreach (var component in components)
+			if (system is IWorldCallbackReceiver callbackReceiver)
 			{
-				system.AddComponent(component);
+				foreach (var component in components)
+				{
+					callbackReceiver.OnAddComponent(component);
+				}
 			}
 
 			systems.Add(system);
@@ -34,9 +38,12 @@ namespace Lazlo.Gocs
 				throw new ArgumentNullException(nameof(system));
 			}
 
-			foreach (var component in components)
+			if (system is IWorldCallbackReceiver callbackReceiver)
 			{
-				system.RemoveComponent(component);
+				foreach (var component in components)
+				{
+					callbackReceiver.OnRemoveComponent(component);
+				}
 			}
 
 			systems.Remove(system);
@@ -51,11 +58,14 @@ namespace Lazlo.Gocs
 
 			components.Add(component);
 
-			AddComponentToQueryCaches(component);
+			Registries.Add(component);
 
 			foreach (var system in systems)
 			{
-				system.AddComponent(component);
+				if (system is IWorldCallbackReceiver callbackReceiver)
+				{
+					callbackReceiver.OnAddComponent(component);
+				}
 			}
 		}
 
@@ -68,10 +78,13 @@ namespace Lazlo.Gocs
 
 			foreach (var system in systems)
 			{
-				system.RemoveComponent(component);
+				if (system is IWorldCallbackReceiver callbackReceiver)
+				{
+					callbackReceiver.OnRemoveComponent(component);
+				}
 			}
 
-			RemoveComponentFromQueryCaches(component);
+			Registries.Remove(component);
 
 			components.Remove(component);
 		}
@@ -82,143 +95,121 @@ namespace Lazlo.Gocs
 
 		#region Queries
 
-		// TODO: Make it fast.
-
-		private static readonly Dictionary<Type, HashSet<IComponent>> componentsByType = new Dictionary<Type, HashSet<IComponent>>(FastTypeComparer.Instance);
-
-		private static readonly Dictionary<Type, HashSet<GameObject>> entitiesByComponentType = new Dictionary<Type, HashSet<GameObject>>(FastTypeComparer.Instance);
-
-		private static void AddComponentToQueryCaches(IComponent component)
+		public static QueryResult<T> Query<T>(bool forceNative = false)
 		{
-			foreach (var componentType in ComponentTypeUtility.GetComponentTypes(component.GetType()))
+			using (var filter = QueryFilter.New(1))
 			{
-				if (!componentsByType.TryGetValue(componentType, out var componentsOfType))
+				var pass = filter.Pass<T>(forceNative);
+
+				var result = QueryResult<T>.New();
+
+				foreach (var gameObject in filter)
 				{
-					componentsOfType = new HashSet<IComponent>();
-					componentsByType.Add(componentType, componentsOfType);
+					result.Add(filter.Result<T>(pass, gameObject));
 				}
 
-				if (!entitiesByComponentType.TryGetValue(componentType, out var entitiesWithComponentsOfType))
+				return result;
+			}
+		}
+
+		public static QueryResult<(T1, T2)> Query<T1, T2>(bool forceNative = false)
+		{
+			using (var filter = QueryFilter.New(2))
+			{
+				var pass1 = filter.Pass<T1>(forceNative);
+				var pass2 = filter.Pass<T2>(forceNative);
+
+				var result = QueryResult<(T1, T2)>.New();
+
+				foreach (var gameObject in filter)
 				{
-					entitiesWithComponentsOfType = new HashSet<GameObject>();
-					entitiesByComponentType.Add(componentType, entitiesWithComponentsOfType);
+					result.Add
+					((
+						filter.Result<T1>(pass1, gameObject),
+						filter.Result<T2>(pass2, gameObject)
+					));
 				}
 
-				componentsOfType.Add(component);
-				entitiesWithComponentsOfType.Add(component.gameObject);
+				return result;
 			}
 		}
 
-		private static void RemoveComponentFromQueryCaches(IComponent component)
+		public static QueryResult<(T1, T2, T3)> Query<T1, T2, T3>(bool forceNative = false)
 		{
-			foreach (var componentType in ComponentTypeUtility.GetComponentTypes(component.GetType()))
+			using (var filter = QueryFilter.New(3))
 			{
-				if (componentsByType.TryGetValue(componentType, out var componentsOfType))
+				var pass1 = filter.Pass<T1>(forceNative);
+				var pass2 = filter.Pass<T2>(forceNative);
+				var pass3 = filter.Pass<T3>(forceNative);
+
+				var result = QueryResult<(T1, T2, T3)>.New();
+
+				foreach (var gameObject in filter)
 				{
-					componentsOfType.Remove(component);
+					result.Add
+					((
+						filter.Result<T1>(pass1, gameObject),
+						filter.Result<T2>(pass2, gameObject),
+						filter.Result<T3>(pass3, gameObject)
+					));
 				}
 
-				if (entitiesByComponentType.TryGetValue(componentType, out var entitiesWithComponentsOfType))
+				return result;
+			}
+		}
+
+		public static QueryResult<(T1, T2, T3, T4)> Query<T1, T2, T3, T4>(bool forceNative = false)
+		{
+			using (var filter = QueryFilter.New(3))
+			{
+				var pass1 = filter.Pass<T1>(forceNative);
+				var pass2 = filter.Pass<T2>(forceNative);
+				var pass3 = filter.Pass<T3>(forceNative);
+				var pass4 = filter.Pass<T4>(forceNative);
+
+				var result = QueryResult<(T1, T2, T3, T4)>.New();
+
+				foreach (var gameObject in filter)
 				{
-					entitiesWithComponentsOfType.Remove(component.gameObject);
+					result.Add
+					((
+						filter.Result<T1>(pass1, gameObject),
+						filter.Result<T2>(pass2, gameObject),
+						filter.Result<T3>(pass3, gameObject),
+						filter.Result<T4>(pass4, gameObject)
+					));
 				}
+
+				return result;
 			}
 		}
 
-		public static IEnumerable<T> Query<T>()
-			where T : IComponent
+		public static QueryResult<(T1, T2, T3, T4, T5)> Query<T1, T2, T3, T4, T5>(bool forceNative = false)
 		{
-			if (!componentsByType.TryGetValue(typeof(T), out var componentsOfType))
+			using (var filter = QueryFilter.New(3))
 			{
-				yield break;
+				var pass1 = filter.Pass<T1>(forceNative);
+				var pass2 = filter.Pass<T2>(forceNative);
+				var pass3 = filter.Pass<T3>(forceNative);
+				var pass4 = filter.Pass<T4>(forceNative);
+				var pass5 = filter.Pass<T5>(forceNative);
+
+				var result = QueryResult<(T1, T2, T3, T4, T5)>.New();
+
+				foreach (var gameObject in filter)
+				{
+					result.Add
+					((
+						filter.Result<T1>(pass1, gameObject),
+						filter.Result<T2>(pass2, gameObject),
+						filter.Result<T3>(pass3, gameObject),
+						filter.Result<T4>(pass4, gameObject),
+						filter.Result<T5>(pass5, gameObject)
+					));
+				}
+
+				return result;
 			}
-
-			foreach (var componentOfType in componentsOfType)
-			{
-				yield return (T)componentOfType;
-			}
-		}
-
-		public static IEnumerable<(T1, T2)> Query<T1, T2>()
-			where T1 : IComponent
-			where T2 : IComponent
-		{
-			if (!entitiesByComponentType.TryGetValue(typeof(T1), out var entitiesWith1))
-			{
-				yield break;
-			}
-
-			if (!entitiesByComponentType.TryGetValue(typeof(T2), out var entitiesWith2))
-			{
-				yield break;
-			}
-
-			// TODO: HashSet pooling
-			var entities = new HashSet<GameObject>(entitiesWith1);
-			entities.IntersectWith(entitiesWith2);
-
-			foreach (var entity in entities)
-			{
-				yield return entity.Get<T1, T2>();
-			}
-		}
-
-		public static IEnumerable<(T1, T2, T3)> Query<T1, T2, T3>()
-			where T1 : IComponent
-			where T2 : IComponent
-			where T3 : IComponent
-		{
-			if (!entitiesByComponentType.TryGetValue(typeof(T1), out var entitiesWith1))
-			{
-				yield break;
-			}
-
-			if (!entitiesByComponentType.TryGetValue(typeof(T2), out var entitiesWith2))
-			{
-				yield break;
-			}
-
-			if (!entitiesByComponentType.TryGetValue(typeof(T2), out var entitiesWith3))
-			{
-				yield break;
-			}
-
-			// TODO: HashSet pooling
-			var entities = new HashSet<GameObject>(entitiesWith1);
-			entities.IntersectWith(entitiesWith2);
-			entities.IntersectWith(entitiesWith3);
-
-			foreach (var entity in entities)
-			{
-				yield return entity.Get<T1, T2, T3>();
-			}
-		}
-
-		#endregion
-
-
-
-		#region Editor Queries
-
-		public static IEnumerable<T1> EditorQuery<T1>()
-			where T1 : IComponent
-		{
-			throw new NotImplementedException();
-		}
-
-		public static IEnumerable<(T1, T2)> EditorQuery<T1, T2>()
-			where T1 : IComponent
-			where T2 : IComponent
-		{
-			throw new NotImplementedException();
-		}
-
-		public static IEnumerable<(T1, T2, T3)> EditorQuery<T1, T2, T3>()
-			where T1 : IComponent
-			where T2 : IComponent
-			where T3 : IComponent
-		{
-			throw new NotImplementedException();
 		}
 
 		#endregion

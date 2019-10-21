@@ -2,30 +2,22 @@
 
 namespace Lazlo.Gocs.Examples.Zones
 {
-	public sealed class ZoneSystem : BaseSystem
+	public sealed class ZoneSystem : BaseSystem, ISystemWatch<IZone, ITriggerEventProxy>
 	{
 		private readonly SystemEvents<Collider> enterEvents = new SystemEvents<Collider>();
 
 		private readonly SystemEvents<Collider> exitEvents = new SystemEvents<Collider>();
 
-		public override void AddComponent(IComponent component)
+		public override void AddComponent(IZone zone, ITriggerEventProxy trigger)
 		{
-			if (component is IZone zone)
-			{
-				var trigger = zone.gameObject.GetOrAddComponent<TriggerEventProxy>();
-
-				enterEvents[trigger.onTriggerEnter] = other => OnZoneTriggerEnter(zone, other);
-				enterEvents[trigger.onTriggerExit] = other => OnZoneTriggerExit(zone, other);
-			}
+			enterEvents[trigger.onTriggerEnter] = other => OnZoneTriggerEnter(zone, other);
+			enterEvents[trigger.onTriggerExit] = other => OnZoneTriggerExit(zone, other);
 		}
 
-		public override void RemoveComponent(IComponent component)
+		public override void RemoveComponent(IZone zone, ITriggerEventProxy trigger)
 		{
-			if (component.gameObject.Has(out IZone zone, out ITriggerEventProxy trigger))
-			{
-				enterEvents[trigger.onTriggerEnter] = null;
-				enterEvents[trigger.onTriggerExit] = null;
-			}
+			enterEvents[trigger.onTriggerEnter] = null;
+			enterEvents[trigger.onTriggerExit] = null;
 		}
 
 		private void OnZoneTriggerEnter(IZone zone, Collider other)
