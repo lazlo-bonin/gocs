@@ -4,7 +4,7 @@ namespace Lazlo.Gocs.Examples.Zones
 {
 	public sealed class ZoneSystem : BaseSystem
 	{
-		private readonly SystemComponents<IZone, ITriggerEventProxy> components = new SystemComponents<IZone, ITriggerEventProxy>();
+		private readonly SystemComponents<IZone, TriggerProxy> components = new SystemComponents<IZone, TriggerProxy>();
 
 		private readonly SystemEvents<Collider> enterEvents = new SystemEvents<Collider>();
 
@@ -14,8 +14,8 @@ namespace Lazlo.Gocs.Examples.Zones
 		{
 			if (components.Add(component, out var zone, out var trigger))
 			{
-				enterEvents[trigger.onTriggerEnter] = other => OnZoneTriggerEnter(zone, other);
-				exitEvents[trigger.onTriggerExit] = other => OnZoneTriggerExit(zone, other);
+				enterEvents[trigger.onEnter] = other => OnZoneTriggerEnter(zone, other);
+				exitEvents[trigger.onExit] = other => OnZoneTriggerExit(zone, other);
 			}
 		}
 
@@ -23,14 +23,14 @@ namespace Lazlo.Gocs.Examples.Zones
 		{
 			if (components.Remove(component, out var zone, out var trigger))
 			{
-				enterEvents[trigger.onTriggerEnter] = null;
-				exitEvents[trigger.onTriggerExit] = null;
+				enterEvents[trigger.onEnter] = null;
+				exitEvents[trigger.onExit] = null;
 			}
 		}
 
 		private void OnZoneTriggerEnter(IZone zone, Collider other)
 		{
-			if (other.CompareTag(zone.requiredTag))
+			if (string.IsNullOrEmpty(zone.requiredTag) || other.CompareTag(zone.requiredTag))
 			{
 				zone.onEnter?.Invoke(other.gameObject);
 			}
@@ -38,7 +38,7 @@ namespace Lazlo.Gocs.Examples.Zones
 
 		private void OnZoneTriggerExit(IZone zone, Collider other)
 		{
-			if (other.CompareTag(zone.requiredTag))
+			if (string.IsNullOrEmpty(zone.requiredTag) || other.CompareTag(zone.requiredTag))
 			{
 				zone.onExit?.Invoke(other.gameObject);
 			}

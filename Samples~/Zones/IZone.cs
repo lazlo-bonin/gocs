@@ -2,6 +2,7 @@
 
 namespace Lazlo.Gocs.Examples.Zones
 {
+	[RuntimeRequireComponent(typeof(TriggerProxy))]
 	public interface IZone : IComponent
 	{
 		// Attributes

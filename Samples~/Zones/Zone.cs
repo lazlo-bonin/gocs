@@ -10,15 +10,15 @@ namespace Lazlo.Gocs.Examples.Interaction
 		{
 			base.Awake();
 
-			onEnter.AddHandler(_onEnter.Invoke);
-			onExit.AddHandler(_onExit.Invoke);
+			onEnter.AddHandler(go => _onEnter.Invoke());
+			onExit.AddHandler(go => _onExit.Invoke());
 		}
 
-		[SerializeField] private string _requiredTag;
-		[SerializeField] private UnityEvent<GameObject> _onEnter = default;
-		[SerializeField] private UnityEvent<GameObject> _onExit = default;
+		[SerializeField] private string _requiredTag = default;
+		[SerializeField] private UnityEvent _onEnter = default;
+		[SerializeField] private UnityEvent _onExit = default;
 
-		public string requiredTag => requiredTag;
+		public string requiredTag => _requiredTag;
 		public Event<GameObject> onEnter { get; } = new Event<GameObject>();
 		public Event<GameObject> onExit { get; } = new Event<GameObject>();
 	}

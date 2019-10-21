@@ -32,17 +32,20 @@ namespace Lazlo.Gocs
 				throw new ArgumentException("Component type is not derived from component.", nameof(componentType));
 			}
 
-			foreach (var attribute in componentType.GetCustomAttributes(typeof(RuntimeRequireComponentAttribute), true).Cast<RuntimeRequireComponentAttribute>())
+			foreach (var type in ComponentTypeUtility.GetManagedComponentTypes(componentType))
 			{
-				var requiredComponentType = attribute.componentType;
-
-				if (!typeof(Component).IsAssignableFrom(requiredComponentType))
+				foreach (var attribute in type.GetCustomAttributes(typeof(RuntimeRequireComponentAttribute), true).Cast<RuntimeRequireComponentAttribute>())
 				{
-					Debug.LogWarning($"Required component type '{requiredComponentType}' is not derived from component, ignoring.");
-					continue;
-				}
+					var requiredComponentType = attribute.componentType;
 
-				yield return requiredComponentType;
+					if (!typeof(Component).IsAssignableFrom(requiredComponentType))
+					{
+						Debug.LogWarning($"Required component type '{requiredComponentType}' is not derived from component, ignoring.");
+						continue;
+					}
+
+					yield return requiredComponentType;
+				}
 			}
 		}
 
