@@ -4,53 +4,47 @@ using System.Linq;
 
 namespace Lazlo.Gocs
 {
-	public static class ArrayPool<T>
+	internal static class ArrayPool<T>
 	{
-		private static readonly object @lock = new object();
 		private static readonly Dictionary<int, Stack<T[]>> free = new Dictionary<int, Stack<T[]>>();
-		private static readonly HashSet<T[]> busy = new HashSet<T[]>();
+
+		private static readonly HashSet<T[]> busy = new HashSet<T[]>(ReferenceEqualityComparer<T[]>.Instance);
 
 		public static T[] New(int length)
 		{
-			lock (@lock)
+			if (!free.TryGetValue(length, out var freeOfLength))
 			{
-				if (!free.TryGetValue(length, out var freeOfLength))
-				{
-					freeOfLength = new Stack<T[]>();
-					free.Add(length, freeOfLength);
-				}
-
-				if (freeOfLength.Count == 0)
-				{
-					freeOfLength.Push(new T[length]);
-				}
-
-				var array = freeOfLength.Pop();
-
-				busy.Add(array);
-
-				return array;
+				freeOfLength = new Stack<T[]>();
+				free.Add(length, freeOfLength);
 			}
+
+			if (freeOfLength.Count == 0)
+			{
+				freeOfLength.Push(new T[length]);
+			}
+
+			var array = freeOfLength.Pop();
+
+			busy.Add(array);
+
+			return array;
 		}
 
 		public static void Free(T[] array)
 		{
-			lock (@lock)
+			if (!busy.Contains(array))
 			{
-				if (!busy.Contains(array))
-				{
-					throw new ArgumentException("The array to free is not in use by the pool.", nameof(array));
-				}
-
-				for (var i = 0; i < array.Length; i++)
-				{
-					array[i] = default(T);
-				}
-
-				busy.Remove(array);
-
-				free[array.Length].Push(array);
+				throw new ArgumentException("The array to free is not in use by the pool.", nameof(array));
 			}
+
+			for (var i = 0; i < array.Length; i++)
+			{
+				array[i] = default(T);
+			}
+
+			busy.Remove(array);
+
+			free[array.Length].Push(array);
 		}
 	}
 

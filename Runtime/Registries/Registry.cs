@@ -13,7 +13,7 @@ namespace Lazlo.Gocs
 
         private readonly HashSet<TComponent> components = new HashSet<TComponent>();
         private readonly HashSet<GameObject> gameObjects = new HashSet<GameObject>(FastUnityObjectComparer<GameObject>.Instance);
-        private readonly Dictionary<GameObject, TComponent> map = new Dictionary<GameObject, TComponent>(FastUnityObjectComparer<GameObject>.Instance);
+        private readonly Dictionary<GameObject, List<TComponent>> map = new Dictionary<GameObject, List<TComponent>>(FastUnityObjectComparer<GameObject>.Instance);
 
         private Registry()
         {
@@ -35,7 +35,14 @@ namespace Lazlo.Gocs
             var gameObject = component.gameObject;
             components.Add(tComponent);
             gameObjects.Add(gameObject);
-            map.Add(gameObject, tComponent);
+
+            if (!map.TryGetValue(gameObject, out var gomap))
+            {
+	            gomap = ListPool<TComponent>.New();
+	            map.Add(gameObject, gomap);
+            }
+
+            gomap.Add(tComponent);
         }
 
         public void Remove(IComponent component)
@@ -53,12 +60,23 @@ namespace Lazlo.Gocs
             var gameObject = component.gameObject;
             components.Remove(tComponent);
             gameObjects.Remove(gameObject);
-            map.Remove(gameObject);
+			
+            if (map.TryGetValue(gameObject, out var gomap))
+            {
+	            if (gomap.Remove(tComponent))
+	            {
+					if (gomap.Count == 0)
+					{
+						gomap.Free();
+						map.Remove(gameObject);
+					}
+	            }
+            }
         }
 
         public void Filter(QueryFilter filter, bool forceNative)
         {
-            if (forceNative || mode == RegistryMode.Native)
+            if (forceNative || mode == RegistryMode.Native || !World.enableRegistries)
             {
                 NativeFilter(filter);
             }
@@ -106,7 +124,7 @@ namespace Lazlo.Gocs
 
                 foreach (var go in filter.set)
                 {
-                    filter.Map(go, map[go]);
+	                filter.Map(go, map[go][0]);
                 }
             }
         }

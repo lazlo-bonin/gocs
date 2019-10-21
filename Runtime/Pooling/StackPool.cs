@@ -3,44 +3,38 @@ using System.Collections.Generic;
 
 namespace Lazlo.Gocs
 {
-	public static class StackPool<T>
+	internal static class StackPool<T>
 	{
-		private static readonly object @lock = new object();
 		private static readonly Stack<Stack<T>> free = new Stack<Stack<T>>();
-		private static readonly HashSet<Stack<T>> busy = new HashSet<Stack<T>>();
+
+		private static readonly HashSet<Stack<T>> busy = new HashSet<Stack<T>>(ReferenceEqualityComparer<Stack<T>>.Instance);
 
 		public static Stack<T> New()
 		{
-			lock (@lock)
+			if (free.Count == 0)
 			{
-				if (free.Count == 0)
-				{
-					free.Push(new Stack<T>());
-				}
-
-				var stack = free.Pop();
-
-				busy.Add(stack);
-
-				return stack;
+				free.Push(new Stack<T>());
 			}
+
+			var stack = free.Pop();
+
+			busy.Add(stack);
+
+			return stack;
 		}
 
 		public static void Free(Stack<T> stack)
 		{
-			lock (@lock)
+			if (!busy.Contains(stack))
 			{
-				if (!busy.Contains(stack))
-				{
-					throw new ArgumentException("The stack to free is not in use by the pool.", nameof(stack));
-				}
-
-				stack.Clear();
-
-				busy.Remove(stack);
-
-				free.Push(stack);
+				throw new ArgumentException("The stack to free is not in use by the pool.", nameof(stack));
 			}
+
+			stack.Clear();
+
+			busy.Remove(stack);
+
+			free.Push(stack);
 		}
 	}
 

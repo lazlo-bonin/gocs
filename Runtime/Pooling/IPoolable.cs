@@ -1,6 +1,6 @@
 ﻿namespace Lazlo.Gocs
 {
-	public interface IPoolable
+	internal interface IPoolable
 	{
 		void New();
 		void Free();

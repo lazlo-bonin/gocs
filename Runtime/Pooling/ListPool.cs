@@ -1,46 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
 
 namespace Lazlo.Gocs
 {
-	public static class ListPool<T>
+	internal static class ListPool<T>
 	{
-		private static readonly object @lock = new object();
 		private static readonly Stack<List<T>> free = new Stack<List<T>>();
-		private static readonly HashSet<List<T>> busy = new HashSet<List<T>>();
+
+		private static readonly HashSet<List<T>> busy = new HashSet<List<T>>(ReferenceEqualityComparer<List<T>>.Instance);
 
 		public static List<T> New()
 		{
-			lock (@lock)
+			if (free.Count == 0)
 			{
-				if (free.Count == 0)
-				{
-					free.Push(new List<T>());
-				}
-
-				var list = free.Pop();
-
-				busy.Add(list);
-
-				return list;
+				free.Push(new List<T>());
 			}
+
+			var list = free.Pop();
+
+			busy.Add(list);
+
+			return list;
 		}
 
 		public static void Free(List<T> list)
 		{
-			lock (@lock)
+			if (!busy.Remove(list))
 			{
-				if (!busy.Remove(list))
-				{
-					throw new ArgumentException("The list to free is not in use by the pool.", nameof(list));
-				}
-
-				list.Clear();
-
-				free.Push(list);
+				throw new ArgumentException("The list to free is not in use by the pool.", nameof(list));
 			}
+
+			list.Clear();
+
+			free.Push(list);
 		}
 	}
 

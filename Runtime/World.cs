@@ -6,6 +6,8 @@ namespace Lazlo.Gocs
 	public static class World
 	{
 		#region Systems & Components
+		
+		public static bool enableRegistries { get; set; } = true;
 
 		private static readonly List<ISystem> systems = new List<ISystem>();
 
@@ -56,7 +58,10 @@ namespace Lazlo.Gocs
 
 			components.Add(component);
 
-			Registries.Add(component);
+			if (enableRegistries)
+			{
+				Registries.Add(component);
+			}
 
 			foreach (var system in systems)
 			{
@@ -82,7 +87,10 @@ namespace Lazlo.Gocs
 				}
 			}
 
-			Registries.Remove(component);
+			if (enableRegistries)
+			{
+				Registries.Remove(component);
+			}
 
 			components.Remove(component);
 		}
