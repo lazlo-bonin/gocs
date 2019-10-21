@@ -68,7 +68,7 @@ namespace Lazlo.Gocs.Examples.Interaction
 		{
 			Gizmos.color = Color.magenta;
 
-			foreach (var interactable in World.EditorQuery<IInteractable>())
+			foreach (var interactable in World.Query<IInteractable>(true))
 			{
 				Gizmos.DrawWireSphere(interactable.transform.position, interactable.range);
 			}

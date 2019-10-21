@@ -30,6 +30,11 @@
             "displayName": "Zones",
             "description": "Use GOCS to handle entering and exiting zones.",
             "path": "Samples~/Zones"
+        },
+        {
+            "displayName": "Benchmark",
+            "description": "Test query performance on thousands of objects.",
+            "path": "Samples~/Benchmark"
         }
     ]
   }
