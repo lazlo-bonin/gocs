@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Lazlo.Gocs
 {
+	/// <summary>
+	/// Automatically adds the required component as a dependency at runtime.
+	/// Unlike [RequireComponent], this attribute will not require the component during edit mode.
+	/// </summary>
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true, Inherited = true)]
 	public sealed class RuntimeRequireComponentAttribute : Attribute
 	{

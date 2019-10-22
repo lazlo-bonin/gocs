@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lazlo.Gocs
 {
-	public static class RuntimeRequiredComponentUtility
+	internal static class RuntimeRequiredComponentUtility
 	{
 		private static readonly Dictionary<Type, Type[]> componentTypeToRequiredComponentTypes = new Dictionary<Type, Type[]>(ReferenceEqualityComparer<Type>.Instance);
 

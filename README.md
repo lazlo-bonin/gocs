@@ -421,7 +421,7 @@ if (health != null && regenable != null)
 
 ### World.Query
 
-Typically, systems will want to run a `foreach` loop on all game objects that share a set of components. To do that, you can use `World.Query`. Unlike `FindObjectsOfType`, this method is is optimized for speed and allocates zero byte of memory.
+Typically, systems will want to run a `foreach` loop on all game objects that share a set of components. To do that, you can use `World.Query`. Unlike `FindObjectsOfType`, this method is optimized for speed and allocates zero byte of memory.
 
 ```csharp
 class HealthRegenSystem : BaseSystem
@@ -463,7 +463,7 @@ For even better performance, you can use the `SystemComponents` helper generic c
 
 This class will keep a extremely fast and lean registry of components, but you must add and remove components to it manually.
 
-GoCS makes this easy with the `OnComponentAdded` and `OnComponentRemoved` callbacks in `BaseSystem`. Let's rewrite our health regen system with this approach:
+GoCS makes this easy with the `OnCreatedComponent` and `OnDestroyingComponent` callbacks in `BaseSystem`. Let's rewrite our health regen system with this approach:
 
 ```csharp
 class HealthRegenSystem : BaseSystem
@@ -471,16 +471,16 @@ class HealthRegenSystem : BaseSystem
     // Declare and initialize the SystemComponents helper
    SystemComponents<IHealth, IRegenable> components = new SystemComponents<IHealth, IRegenable>();
     
-    // OnComponentAdded is sent to all systems when a new component is created
-    public override void OnComponentAdded(IComponent component)
+    // OnCreatedComponent is sent to all systems when a new component is created
+    public override void OnCreatedComponent(IComponent component)
     {
         // Add the component to our SystemComponents
         // (The API takes care of making sure it has the right components for us)
         components.Add(component);
     }
     
-    // OnComponentRemoved is sent to all systems when a new component is destroyed
-    public override void OnComponentRemoved(IComponent component)
+    // OnDestroyingComponent is sent to all systems before an existing component is destroyed
+    public override void OnDestroyingComponent(IComponent component)
     {
         // Remove the component from our SystemComponents
         components.Remove(component);
@@ -535,12 +535,12 @@ This will force the component to be added while in the editor. But if you don't 
 interface IDestructible : IComponent { }
 ```
 
-Finally, if you don't want to (or can't) specify dependencies on the components themselves, you can require components directly from the system, during the `OnComponentAdded ` phase. For example, if `IDestructible` components always need a matching `CollisionEventProxy` component, you could do so using the `GetOrAddComponent` helper:
+Finally, if you don't want to (or can't) specify dependencies on the components themselves, you can require components directly from the system, during the `OnCreatedComponent ` phase. For example, if `IDestructible` components always need a matching `CollisionEventProxy` component, you could do so using the `GetOrAddComponent` helper:
 
 ```csharp
 class ZoneSystem : BaseSystem
 {
-    public override void OnComponentAdded(IComponent component)
+    public override void OnCreatedComponent(IComponent component)
     {
         if (component is IDestructible destructible)
         {
@@ -689,7 +689,7 @@ Indeed, the component interface will be able to define a null getter for events 
 For example:
 
 ```csharp
-interface IInteractable
+interface IInteractable : IComponent
 {
     // Default interface implementation (no event handling)
     Event onHoverEnter => null;
@@ -757,7 +757,7 @@ interface IDestructible : IComponent
 }
 ```
 
-Then, your system must add and remove listeners to the collision events in its `OnComponentAdded` and `OnComponentRemoved` phases. 
+Then, your system must add and remove listeners to the collision events in its `OnCreatedComponent` and `OnDestroyingComponent` phases. 
 
 To do that, you must use a `SystemEvents` helper.
 
@@ -767,7 +767,7 @@ class DestructionSystem : BaseSystem
     // Helper class to assign event handlers
     SystemEvents<Collision> collisionEvents = new SystemEvents<Collision>();
 
-    public override void OnComponentAdded(IComponent c)
+    public override void OnCreatedComponent(IComponent c)
     {
         if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
         {
@@ -776,7 +776,7 @@ class DestructionSystem : BaseSystem
         }
     }
 
-    public override void OnComponentRemoved(IComponent c)
+    public override void OnDestroyingComponent(IComponent c)
     {
         if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
         {
@@ -810,9 +810,9 @@ SystemComponents<IDestructible, ICollisionProxy> components = // ...
 Then you could rewrite:
 
 ```csharp
-public override void OnComponentAdded(IComponent c)
+public override void OnCreatedComponent(IComponent c)
 {
-    components.Add(c);
+    components.Add(c.gameObject);
     
     if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
     {
@@ -821,12 +821,12 @@ public override void OnComponentAdded(IComponent c)
 }
 ```
 
-To the shorter:
+To the single-line:
 
 ```csharp
-public override void OnComponentAdded(IComponent c)
+public override void OnCreatedComponent(IComponent c)
 {
-    if (components.Add(c, out IDestructible destructible, out CollisionProxy collidable))
+    if (components.Add(c.gameObject, out IDestructible destructible, out CollisionProxy collidable))
     {
         collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
     }
@@ -842,17 +842,17 @@ class DestructionSystem : BaseSystem
     
     SystemEvents<Collision> collisionEvents = new SystemEvents<Collision>();
 
-    public override void OnComponentAdded(IComponent c)
+    public override void OnCreatedComponent(IComponent c)
     {
-        if (components.Add(c, out IDestructible destructible, out CollisionProxy collidable))
+        if (components.Add(c.gameObject, out IDestructible destructible, out CollisionProxy collidable))
         {
             collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
         }
     }
 
-    public override void OnComponentRemoved(IComponent c)
+    public override void OnDestroyingComponent(IComponent c)
     {
-        if (components.Remove(c, out IDestructible destructible, out CollisionProxy collidable))
+        if (components.Remove(c.gameObject, out IDestructible destructible, out CollisionProxy collidable))
         {
             collisionEvents[collidable.onEnter] = null;
         }
@@ -914,7 +914,7 @@ public abstract class BaseNetworkComponent : NetworkBehaviour, IComponent
 
 Systems follow the same principle: you can implement your own `ISystem` via `BaseImplementation` helpers.
 
-However, if you want to receive the `OnComponentAdded` and `OnComponentRemoved` callbacks, you also need to implement the `IWorldCallbackReceiver` class. This interface is optional in case you don't need those callbacks in your system and want minimize its initialization cost. `BaseSystem` always implements `IWorldCallbackReceiver`.
+However, if you want to receive the `OnCreatedComponent` and `OnDestroyingComponent` callbacks, you also need to implement the `IWorldCallbackReceiver` class. This interface is optional in case you don't need those callbacks in your system and want minimize its initialization cost. `BaseSystem` always implements `IWorldCallbackReceiver`.
 
 Finally, systems also don't theoretically need to inherit from `MonoBehaviour` or even `UnityEngine.Object`. They could live in singletons, scriptable objects, or any other kind of class you have in your architecture. As long as you call Awake + OnEnable when the system "starts" and OnDisable + OnDestroy when the system "stops", everything should work.
 
@@ -937,8 +937,8 @@ public abstract class MyBaseSystem: ISystem, IWorldCallbackReceiver
     }
     
     // (Optional) Implement IWorldCallbackReceiver:
-    public virtual void OnComponentAdded(IComponent component) { }
-    public virtual void OnComponentRemoved(IComponent component) { }
+    public virtual void OnCreatedComponent(IComponent component) { }
+    public virtual void OnDestroyingComponent(IComponent component) { }
 }
 ```
 

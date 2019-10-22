@@ -1,6 +1,6 @@
 {
     "name": "dev.lazlo.gocs",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "displayName": "GoCS",
     "description": "GameObject Component System for Unity.",
     "unity": "2018.4",

@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 (None)
 
+## [2.0.0] - 2019-10-22
+
+### Added
+- XML Documentation for every public API
+
+### Changed
+- Renamed `IWorldCallbackReceiver.OnAddComponent` to `OnCreatedComponent` for clarity
+- Renamed `IWorldCallbackReceiver.OnRemoveComponent` to `OnDestroyingComponent` for clarity
+- Changed parameter type for `SystemComponents.Add` and `SystemComponents.Remove` from `Component` to `GameObject` 
+- Made various utility classes internal
+- Moved internal classes to a separate folder
+
 ## [1.0.0] - 2019-10-21
 
 ### Added

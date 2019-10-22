@@ -3,10 +3,25 @@ using System.Collections.Generic;
 
 namespace Lazlo.Gocs
 {
+	/// <summary>
+	/// Manages event handler registration for a system.
+	/// This version does not support event arguments.
+	/// </summary>
+	/// <seealso cref="SystemEvents{TArgs}"/>
 	public sealed class SystemEvents
 	{
 		private readonly Dictionary<Event, Action> handlers = new Dictionary<Event, Action>();
 
+		/// <summary>
+		/// Adds or removes a system event handler for the specified event.
+		/// In <see cref="IWorldCallbackReceiver.OnCreatedComponent"/>, pass a handler to add it to the event.
+		/// In <see cref="IWorldCallbackReceiver.OnDestroyingComponent"/>, pass null to remove the handler from the event.
+		/// </summary>
+		/// <remarks>
+		/// System events can only add one handler per event.
+		/// </remarks>
+		/// <param name="event">The event on which to add or remove the handler.</param>
+		/// <returns>The event handler.</returns>
 		public Action this[Event @event]
 		{
 			get

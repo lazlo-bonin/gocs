@@ -26,14 +26,14 @@ namespace Lazlo.Gocs.Benchmark
 
 		private int tally;
 
-		public override void OnAddComponent(IComponent component)
+		public override void OnCreatedComponent(IComponent component)
 		{
-			components.Add(component);
+			components.Add(component.gameObject);
 		}
 
-		public override void OnRemoveComponent(IComponent component)
+		public override void OnDestroyingComponent(IComponent component)
 		{
-			components.Remove(component);
+			components.Remove(component.gameObject);
 		}
 
 		private void Start()

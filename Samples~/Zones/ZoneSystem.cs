@@ -10,18 +10,18 @@ namespace Lazlo.Gocs.Examples.Zones
 
 		private readonly SystemEvents<Collider> exitEvents = new SystemEvents<Collider>();
 
-		public override void OnAddComponent(IComponent component)
+		public override void OnCreatedComponent(IComponent component)
 		{
-			if (components.Add(component, out var zone, out var trigger))
+			if (components.Add(component.gameObject, out var zone, out var trigger))
 			{
 				enterEvents[trigger.onEnter] = other => OnZoneTriggerEnter(zone, other);
 				exitEvents[trigger.onExit] = other => OnZoneTriggerExit(zone, other);
 			}
 		}
 
-		public override void OnRemoveComponent(IComponent component)
+		public override void OnDestroyingComponent(IComponent component)
 		{
-			if (components.Remove(component, out var zone, out var trigger))
+			if (components.Remove(component.gameObject, out var zone, out var trigger))
 			{
 				enterEvents[trigger.onEnter] = null;
 				exitEvents[trigger.onExit] = null;

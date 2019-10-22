@@ -17,7 +17,14 @@ namespace Lazlo.Gocs
 
         private Registry()
         {
-            mode = typeof(IComponent).IsAssignableFrom(typeof(TComponent)) ? RegistryMode.Managed : RegistryMode.Native;
+	        if (ComponentTypeUtility.IsManagedComponentType(typeof(TComponent)))
+	        {
+		        mode = RegistryMode.Managed;
+	        }
+			else
+	        {
+		        mode = RegistryMode.Native;
+	        }
         }
 
         public void Add(IComponent component)

@@ -3,17 +3,26 @@ using System.Collections.Generic;
 
 namespace Lazlo.Gocs
 {
+	/// <summary>
+	/// Provides root-level access to systems and components.
+	/// </summary>
 	public static class World
 	{
-		#region Systems & Components
-		
+		/// <summary>
+		/// Whether cached registries should be used for managed components.
+		/// Disable to improve initialization and destruction speed of components.
+		/// However, when disabled, managed queries will no longer be available
+		/// and <see cref="SystemComponents{T}"/> should be used instead.
+		/// </summary>
 		public static bool enableRegistries { get; set; } = true;
 
+		#region Systems & Components
+		
 		private static readonly List<ISystem> systems = new List<ISystem>();
 
 		private static readonly List<IComponent> components = new List<IComponent>();
 
-		public static void AddSystem(ISystem system)
+		internal static void AddSystem(ISystem system)
 		{
 			if (system == null)
 			{
@@ -24,14 +33,14 @@ namespace Lazlo.Gocs
 			{
 				foreach (var component in components)
 				{
-					callbackReceiver.OnAddComponent(component);
+					callbackReceiver.OnCreatedComponent(component);
 				}
 			}
 
 			systems.Add(system);
 		}
 
-		public static void RemoveSystem(ISystem system)
+		internal static void RemoveSystem(ISystem system)
 		{
 			if (system == null)
 			{
@@ -42,14 +51,14 @@ namespace Lazlo.Gocs
 			{
 				foreach (var component in components)
 				{
-					callbackReceiver.OnRemoveComponent(component);
+					callbackReceiver.OnDestroyingComponent(component);
 				}
 			}
 
 			systems.Remove(system);
 		}
 
-		public static void AddComponent(IComponent component)
+		internal static void AddComponent(IComponent component)
 		{
 			if (component == null)
 			{
@@ -67,12 +76,12 @@ namespace Lazlo.Gocs
 			{
 				if (system is IWorldCallbackReceiver callbackReceiver)
 				{
-					callbackReceiver.OnAddComponent(component);
+					callbackReceiver.OnCreatedComponent(component);
 				}
 			}
 		}
 
-		public static void RemoveComponent(IComponent component)
+		internal static void RemoveComponent(IComponent component)
 		{
 			if (component == null)
 			{
@@ -83,7 +92,7 @@ namespace Lazlo.Gocs
 			{
 				if (system is IWorldCallbackReceiver callbackReceiver)
 				{
-					callbackReceiver.OnRemoveComponent(component);
+					callbackReceiver.OnDestroyingComponent(component);
 				}
 			}
 
@@ -101,6 +110,12 @@ namespace Lazlo.Gocs
 
 		#region Queries
 
+		/// <summary>
+		/// Finds all game objects that contain the specified component.
+		/// </summary>
+		/// <typeparam name="T">The type of the component.</typeparam>
+		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
+		/// <returns>The components per game object.</returns>
 		public static QueryResult<T> Query<T>(bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(1))
@@ -118,6 +133,13 @@ namespace Lazlo.Gocs
 			}
 		}
 
+		/// <summary>
+		/// Finds all game objects that contain all the specified components.
+		/// </summary>
+		/// <typeparam name="T1">The type of the first component.</typeparam>
+		/// <typeparam name="T2">The type of the second component.</typeparam>
+		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
+		/// <returns>The tuples of components per game object.</returns>
 		public static QueryResult<(T1, T2)> Query<T1, T2>(bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(2))
@@ -141,7 +163,15 @@ namespace Lazlo.Gocs
 				return result;
 			}
 		}
-
+		
+		/// <summary>
+		/// Finds all game objects that contain all the specified components.
+		/// </summary>
+		/// <typeparam name="T1">The type of the first component.</typeparam>
+		/// <typeparam name="T2">The type of the second component.</typeparam>
+		/// <typeparam name="T3">The type of the third component.</typeparam>
+		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
+		/// <returns>The tuples of components per game object.</returns>
 		public static QueryResult<(T1, T2, T3)> Query<T1, T2, T3>(bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(3))
@@ -167,7 +197,16 @@ namespace Lazlo.Gocs
 				return result;
 			}
 		}
-
+		
+		/// <summary>
+		/// Finds all game objects that contain all the specified components.
+		/// </summary>
+		/// <typeparam name="T1">The type of the first component.</typeparam>
+		/// <typeparam name="T2">The type of the second component.</typeparam>
+		/// <typeparam name="T3">The type of the third component.</typeparam>
+		/// <typeparam name="T4">The type of the fourth component.</typeparam>
+		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
+		/// <returns>The tuples of components per game object.</returns>
 		public static QueryResult<(T1, T2, T3, T4)> Query<T1, T2, T3, T4>(bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(3))
@@ -195,7 +234,17 @@ namespace Lazlo.Gocs
 				return result;
 			}
 		}
-
+		
+		/// <summary>
+		/// Finds all game objects that contain all the specified components.
+		/// </summary>
+		/// <typeparam name="T1">The type of the first component.</typeparam>
+		/// <typeparam name="T2">The type of the second component.</typeparam>
+		/// <typeparam name="T3">The type of the third component.</typeparam>
+		/// <typeparam name="T4">The type of the fourth component.</typeparam>
+		/// <typeparam name="T5">The type of the fifth component.</typeparam>
+		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
+		/// <returns>The tuples of components per game object.</returns>
 		public static QueryResult<(T1, T2, T3, T4, T5)> Query<T1, T2, T3, T4, T5>(bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(3))
