@@ -774,7 +774,7 @@ class DestructionSystem : BaseSystem
         if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
         {
             // Add the system event handler on the proxy
-            collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+            collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
         }
     }
 
@@ -818,7 +818,7 @@ public override void OnCreatedComponent(IComponent c)
     
     if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
     {
-        collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+        collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
     }
 }
 ```
@@ -830,7 +830,7 @@ public override void OnCreatedComponent(IComponent c)
 {
     if (components.Add(c.gameObject, out IDestructible destructible, out CollisionProxy collidable))
     {
-        collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+        collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
     }
 }
 ```
@@ -848,7 +848,7 @@ class DestructionSystem : BaseSystem
     {
         if (components.Add(c.gameObject, out IDestructible destructible, out CollisionProxy collidable))
         {
-            collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+            collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
         }
     }
 
