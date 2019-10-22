@@ -1,18 +1,17 @@
 {
     "name": "dev.lazlo.gocs",
-    "version": "0.1.2",
-    "displayName": "GOCS",
+    "version": "1.0.0",
+    "displayName": "GoCS",
     "description": "GameObject Component System for Unity.",
     "unity": "2018.4",
     "dependencies": { },
     "keywords": [
         "gocs",
         "ecs",
-        "relaxed",
-        "pattern",
-        "framework",
         "ioc",
         "oop",
+        "pattern",
+        "framework",
         "events"
     ],
     "author": {
@@ -30,6 +29,11 @@
             "displayName": "Zones",
             "description": "Use GOCS to handle entering and exiting zones.",
             "path": "Samples~/Zones"
+        },
+        {
+            "displayName": "Benchmark",
+            "description": "Test query performance on thousands of objects.",
+            "path": "Samples~/Benchmark"
         }
     ]
   }

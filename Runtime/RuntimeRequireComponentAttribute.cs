@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Lazlo.Gocs
 {
-	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true, Inherited = false)]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true, Inherited = true)]
 	public sealed class RuntimeRequireComponentAttribute : Attribute
 	{
 		public Type componentType { get; }

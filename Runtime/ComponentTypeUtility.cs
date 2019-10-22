@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Lazlo.Gocs
 {
-	public static class ComponentTypeUtility
+	internal static class ComponentTypeUtility
 	{
-		private static readonly Dictionary<Type, Type[]> typeToComponentTypes = new Dictionary<Type, Type[]>(FastTypeComparer.Instance);
+		private static readonly Dictionary<Type, Type[]> typeToComponentTypes = new Dictionary<Type, Type[]>(ReferenceEqualityComparer<Type>.Instance);
 		
-		public static IEnumerable<Type> GetComponentTypes(Type type)
+		public static IEnumerable<Type> GetManagedComponentTypes(Type type)
 		{
 			if (type == null)
 			{
@@ -17,16 +18,37 @@ namespace Lazlo.Gocs
 
 			if (!typeToComponentTypes.TryGetValue(type, out var componentTypes))
 			{
-				componentTypes = FetchComponentTypes(type).ToArray();
+				componentTypes = FetchManagedComponentTypes(type).ToArray();
 				typeToComponentTypes.Add(type, componentTypes);
 			}
 
 			return componentTypes;
 		}
 
-		private static IEnumerable<Type> FetchComponentTypes(Type type)
+		public static bool IsManagedComponentType(Type type)
 		{
-			return type.GetInterfaces().Where(interfaceType => typeof(IComponent).IsAssignableFrom(interfaceType));
+			return typeof(IComponent).IsAssignableFrom(type);
+		}
+
+		public static bool IsNativeComponentType(Type type)
+		{
+			return typeof(Component).IsAssignableFrom(type);
+		}
+
+		private static IEnumerable<Type> FetchManagedComponentTypes(Type type)
+		{
+			if (IsManagedComponentType(type))
+			{
+				yield return type;
+			}
+
+			foreach (var interfaceType in type.GetInterfaces())
+			{
+				if (IsManagedComponentType(interfaceType))
+				{
+					yield return interfaceType;
+				}
+			}
 		}
 	}
 }

@@ -137,4 +137,4 @@ Again, components can no longer contain methods or events, *only* data. For exam
 
 ---
 
-At this point, as a developer, you should ask yourself whether the added complexity is worth the performance benefit. Personally, I don't care much about the performance benefits of DOTS — my games don't have tens of thousands of entities, and they run perfectly fine on all my target devices. What I *do* care about is how easily I can develop more features and how manageable and clean my code stays along the way. If you're in a similar situation, then GOCS is probably for you.
+At this point, as a developer, you should ask yourself whether the added complexity is worth the performance benefit. Personally, I don't care much about the performance benefits of DOTS — my games don't have tens of thousands of entities, and they run perfectly fine on all my target devices. What I *do* care about is how easily I can develop more features and how manageable and clean my code stays along the way. If you're in a similar situation, then GoCS is probably for you.
