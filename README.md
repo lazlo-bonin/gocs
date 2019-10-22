@@ -73,7 +73,7 @@ GoCS is **similar** to traditional ECS: it's organized as **E**ntities, **C**omp
 
 GoCS is **different** from traditional ECS in two ways:
 
-1. Components are separated in two layers: the **Interface** and the **Class(es)**. Systems only operates on component interfaces. But if they need to, component classes can add extra logic, data, attributes or even inheritance and couplings. (Don't worry if that sounds abstract for now, it'll become clearer with examples!)
+1. Components are separated in two layers: the **Interface** and the **Class(es)**. Systems only operate on component interfaces. But component classes can add extra logic, data, attributes or even inheritance and couplings if they need to. (Don't worry if that sounds abstract for now, it'll become clearer with examples!)
 2. Systems are in charge of event dispatch. In other words, they decide when to send events back to the components. This is what's called **"inversion of control"**: your components don't need to handle their own event *conditions*, they only need to handle their event *reactions*.
 
 # Example
