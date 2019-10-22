@@ -624,6 +624,8 @@ interface IDamageable : IComponent
 }
 ```
 
+---
+
 ## Event Handlers
 
 Events can have zero, one or multiple handlers.
@@ -868,6 +870,8 @@ class DestructionSystem : BaseSystem
 }
 ```
 
+---
+
 ## Custom Base Classes
 
 GoCS come packaged with `BaseComponent` and `BaseSystem` base classes to get you started quickly.
@@ -1018,7 +1022,7 @@ All NPC would have to implement is the members needed by the IInteractable compo
 
 ---
 
-# More Examples
+## More Examples
 
 The GoCS package comes bundled with optional commented examples.
 
@@ -1026,46 +1030,21 @@ If you're using Unity 2019 or newer, you can import them in your project directl
 
 If you're on Unity 2018, you can find them under the `Samples~/` directory of the package and copy them to your project manually.
 
----
+## Forking & Contributing
 
-# Forking & Contributing
+See: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-If you want to fork or contribute to GoCS, you can use the following setup to create a development project for the package.
+## API Reference
 
-1. Clone the GoCS repo or its fork inside an empty directory, for example `gocs_package`
-2. Create a new empty Unity project, for example `gocs_project`
-3. Create symlinks to make Unity recompile modifications instantly:
-    - from `gocs_package` to `gocs_project/Packages/gocs`
-    - from `gocs_package/Samples~` to `gocs_project/Assets/Samples`
+See: [Documentation~/GoCS.md](./Documentation~/GoCS.md)
 
-On Windows, you can use [Link Shell Extension](http://schinagl.priv.at/nt/hardlinkshellext/linkshellextension.html) to create a symlink. Make sure to drop the link as a **Junction**.
+## Development Status
 
-On Mac, you can use the terminal:
+GoCS is not yet guaranteed to be production ready. There may be breaking API changes in the future. In that case, since GoCS uses [Semantic Versioning](https://semver.org), a new major version number will be used. 
 
-```batch
-ln -s /path/to/gocs_package/ /path/to/gocs_project/Packages/gocs/
-ln -s /path/to/gocs_package/Samples~/ /path/to/gocs_project/Assets/Samples/
-```
+I'm open to suggestions and appreciate bug reports. If you have any, just create a new issue on Github!
 
-### Coding Style
-
-GoCS follows a coding style similar to Unity's:
-
-- Public fields and properties: `camelCase`
-- Private backing fields: `_camelCase`
-- Public methods: `PascalCase`
-- Constants: `PascalCase`
-- Allman bracing style
-- Tabs for indentation
-- 1 blank line between each member
-- 3 blank lines between each `#region`
-- Implicit `var` typing when possible
-
----
-
-GoCS is in early preview stages and is not yet considered to be production ready, so there may be breaking API changes until then. I'm open to suggestions and appreciate bug reports. If you have any, just create a new issue on Github!
-
-# Special Thanks
+## Special Thanks
 
 - Alvaro Salvagno for early feedback and testing
 - Tor Vesteergard for various optimization tips
