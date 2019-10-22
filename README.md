@@ -325,14 +325,14 @@ For example, you could create a `BaseInteractable` class from which `Grabbable` 
 
 public abstract class BaseInteractable : BaseComponent, IInteractable
 {
-	protected override void Awake()
-	{
-		base.Awake();
-		onHoverEnter = new Event(OnHoverEnter);
-		onHoverExit = new Event(OnHoverExit);
-		onPress = new Event(OnPress);
-		onRelease = new Event(OnRelease);
-	}
+    protected override void Awake()
+    {
+        base.Awake();
+        onHoverEnter = new Event(OnHoverEnter);
+        onHoverExit = new Event(OnHoverExit);
+        onPress = new Event(OnPress);
+        onRelease = new Event(OnRelease);
+    }
 
     // Attributes
     [SerializeField]
@@ -343,21 +343,21 @@ public abstract class BaseInteractable : BaseComponent, IInteractable
         set => _range = value;
     }
 
-	// Data
-	public bool isHovered { get; set; }
-	public bool isPressed { get; set; }
+    // Data
+    public bool isHovered { get; set; }
+    public bool isPressed { get; set; }
 
-	// Events
-	public Event onHoverEnter { get; private set; }
-	public Event onHoverExit { get; private set; }
-	public Event onPress { get; private set; }
-	public Event onRelease { get; private set; }
+    // Events
+    public Event onHoverEnter { get; private set; }
+    public Event onHoverExit { get; private set; }
+    public Event onPress { get; private set; }
+    public Event onRelease { get; private set; }
 
-	// Event Handlers
-	protected virtual void OnHoverEnter() { }
-	protected virtual void OnHoverExit() { }
-	protected virtual void OnPress() { }
-	protected virtual void OnRelease() { }
+    // Event Handlers
+    protected virtual void OnHoverEnter() { }
+    protected virtual void OnHoverExit() { }
+    protected virtual void OnPress() { }
+    protected virtual void OnRelease() { }
 }
 ```
 
@@ -368,15 +368,15 @@ For example, `Grabbable` now only needs a dozen lines of code:
 ```csharp
 public class Grabbable : BaseInteractable
 {
-	protected override void OnPress()
-	{
-		transform.parent = Camera.main.transform;
-	}
+    protected override void OnPress()
+    {
+        transform.parent = Camera.main.transform;
+    }
 
-	protected override void OnRelease()
-	{
-		transform.parent = null;
-	}
+    protected override void OnRelease()
+    {
+        transform.parent = null;
+    }
 }
 ``` 
 
@@ -448,7 +448,7 @@ class InteractionSystem : BaseSystem
     void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-	
+
         foreach (var interactable in World.Query<IInteractable>(forceNative: true))
         {
             Gizmos.DrawWireSphere(interactable.transform.position, interactable.range);
@@ -767,7 +767,7 @@ class DestructionSystem : BaseSystem
     // Helper class to assign event handlers
     SystemEvents<Collision> collisionEvents = new SystemEvents<Collision>();
 
-    public override void AddComponent(IComponent c)
+    public override void OnComponentAdded(IComponent c)
     {
         if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
         {
@@ -776,7 +776,7 @@ class DestructionSystem : BaseSystem
         }
     }
 
-    public override void RemoveComponent(IComponent c)
+    public override void OnComponentRemoved(IComponent c)
     {
         if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
         {
@@ -810,7 +810,7 @@ SystemComponents<IDestructible, ICollisionProxy> components = // ...
 Then you could rewrite:
 
 ```csharp
-public override void AddComponent(IComponent c)
+public override void OnComponentAdded(IComponent c)
 {
     components.Add(c);
     
@@ -824,7 +824,7 @@ public override void AddComponent(IComponent c)
 To the shorter:
 
 ```csharp
-public override void AddComponent(IComponent c)
+public override void OnComponentAdded(IComponent c)
 {
     if (components.Add(c, out IDestructible destructible, out CollisionProxy collidable))
     {
@@ -842,7 +842,7 @@ class DestructionSystem : BaseSystem
     
     SystemEvents<Collision> collisionEvents = new SystemEvents<Collision>();
 
-    public override void AddComponent(IComponent c)
+    public override void OnComponentAdded(IComponent c)
     {
         if (components.Add(c, out IDestructible destructible, out CollisionProxy collidable))
         {
@@ -850,7 +850,7 @@ class DestructionSystem : BaseSystem
         }
     }
 
-    public override void RemoveComponent(IComponent c)
+    public override void OnComponentRemoved(IComponent c)
     {
         if (components.Remove(c, out IDestructible destructible, out CollisionProxy collidable))
         {
