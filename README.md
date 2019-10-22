@@ -6,7 +6,7 @@
 
 🔀 To be clear, GoCS is entirely unrelated to Unity's new [data oriented tech stack (DOTS)](https://unity.com/dots).
 
-🎓 Before you continue, if you're a bit confused with acronyms and concepts like ECS, OOP, IOC or DOTS, you should start with this basic introduction: [Intro: OOP vs ECS in Unity](INTRO.md)
+🎓 Before you continue, if you're a bit confused with acronyms and concepts like ECS, OOP, IOC or DOTS, you should start with this basic introduction: [Intro: OOP vs ECS in Unity](Documentation~/Manual/Intro.md)
 
 # Why GoCS?
 
@@ -1036,7 +1036,7 @@ See: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## API Reference
 
-See: [Documentation~/GoCS.md](./Documentation~/GoCS.md)
+See: [API Reference](./Documentation~/API/API.md)
 
 ## Development Status
 
