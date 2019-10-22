@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿#if !UNITY_2019_2_OR_NEWER
+using System;
+#endif
+using UnityEngine;
 
 namespace Lazlo.Gocs
 {
@@ -8,16 +11,30 @@ namespace Lazlo.Gocs
 	public static class ComponentUtility
 	{
 #if !UNITY_2019_2_OR_NEWER
-		public static bool TryGetCompoennt<T>(this GameObject go, out T component)
+		public static bool TryGetComponent<T>(this GameObject go, out T component)
 		{
 			component = go.GetComponent<T>();
 
 			return component != null;
 		}
 
-		public static bool TryGetCompoennt<T>(this Component c, out T component)
+		public static bool TryGetComponent(this GameObject go, Type type, out Component component)
+		{
+			component = go.GetComponent(type);
+
+			return component != null;
+		}
+
+		public static bool TryGetComponent<T>(this Component c, out T component)
 		{
 			component = c.GetComponent<T>();
+
+			return component != null;
+		}
+
+		public static bool TryGetComponent(this Component c, Type type, out Component component)
+		{
+			component = c.GetComponent(type);
 
 			return component != null;
 		}

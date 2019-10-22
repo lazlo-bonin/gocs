@@ -12,12 +12,6 @@ namespace Lazlo.Gocs.Benchmark
 
 	public class BenchmarkSystem : BaseSystem
 	{
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
-		private static void BeforeLoad()
-		{
-			World.enableRegistries = true;
-		}
-
 		private readonly SystemComponents<BenchmarkComponent1, BenchmarkComponent2> components = new SystemComponents<BenchmarkComponent1, BenchmarkComponent2>();
 
 		public int count = 1000;

@@ -120,7 +120,13 @@ namespace Lazlo.Gocs
 
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
-
+	
+	/// <summary>
+	/// Holds a high-performance registry of components required by a system.
+	/// </summary>
+	/// <typeparam name="T1">The type of the first required component.</typeparam>
+	/// <typeparam name="T2">The type of the second required component.</typeparam>
+	/// <typeparam name="T3">The type of the third required component.</typeparam>
 	public sealed class SystemComponents<T1, T2, T3> : IEnumerable<(T1, T2, T3)>
 	{
 		private readonly HashSet<(T1, T2, T3)> components = new HashSet<(T1, T2, T3)>();
@@ -177,7 +183,14 @@ namespace Lazlo.Gocs
 
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
-
+	
+	/// <summary>
+	/// Holds a high-performance registry of components required by a system.
+	/// </summary>
+	/// <typeparam name="T1">The type of the first required component.</typeparam>
+	/// <typeparam name="T2">The type of the second required component.</typeparam>
+	/// <typeparam name="T3">The type of the third required component.</typeparam>
+	/// <typeparam name="T4">The type of the fourth required component.</typeparam>
 	public sealed class SystemComponents<T1, T2, T3, T4> : IEnumerable<(T1, T2, T3, T4)>
 	{
 		private readonly HashSet<(T1, T2, T3, T4)> components = new HashSet<(T1, T2, T3, T4)>();
@@ -236,7 +249,15 @@ namespace Lazlo.Gocs
 
 		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
-
+	
+	/// <summary>
+	/// Holds a high-performance registry of components required by a system.
+	/// </summary>
+	/// <typeparam name="T1">The type of the first required component.</typeparam>
+	/// <typeparam name="T2">The type of the second required component.</typeparam>
+	/// <typeparam name="T3">The type of the third required component.</typeparam>
+	/// <typeparam name="T4">The type of the fourth required component.</typeparam>
+	/// <typeparam name="T5">The type of the fifth required component.</typeparam>
 	public sealed class SystemComponents<T1, T2, T3, T4, T5> : IEnumerable<(T1, T2, T3, T4, T5)>
 	{
 		private readonly HashSet<(T1, T2, T3, T4, T5)> components = new HashSet<(T1, T2, T3, T4, T5)>();

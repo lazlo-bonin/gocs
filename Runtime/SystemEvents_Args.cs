@@ -7,6 +7,7 @@ namespace Lazlo.Gocs
 	/// Manages event handler registration for a system.
 	/// This version supports event arguments.
 	/// </summary>
+	/// <typeparam name="TArgs">The type of argument for the events.</typeparam>
 	/// <seealso cref="SystemEvents"/>
 	public sealed class SystemEvents<TArgs>
 	{

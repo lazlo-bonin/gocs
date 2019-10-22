@@ -13,6 +13,10 @@ namespace Lazlo.Gocs
 	{
 		#region Component
 
+		/// <summary>
+		/// Call this during the component's Awake callback.
+		/// </summary>
+		/// <param name="component">The component.</param>
 		public static void ComponentAwake(IComponent component)
 		{
 			if (component is Component concreteComponent)
@@ -22,17 +26,29 @@ namespace Lazlo.Gocs
 
 			World.AddComponent(component);
 		}
-
+		
+		/// <summary>
+		/// Call this during the component's OnEnable callback.
+		/// </summary>
+		/// <param name="component">The component.</param>
 		public static void ComponentOnEnable(IComponent component)
 		{
 			// Currently unused but reserved.
 		}
-
+		
+		/// <summary>
+		/// Call this during the component's OnDisable callback.
+		/// </summary>
+		/// <param name="component">The component.</param>
 		public static void ComponentOnDisable(IComponent component)
 		{
 			// Currently unused but reserved.
 		}
-
+		
+		/// <summary>
+		/// Call this during the component's OnDestroy callback.
+		/// </summary>
+		/// <param name="component">The component.</param>
 		public static void ComponentOnDestroy(IComponent component)
 		{
 			World.RemoveComponent(component);
@@ -43,7 +59,11 @@ namespace Lazlo.Gocs
 
 
 		#region System
-
+		
+		/// <summary>
+		/// Call this during the system's Awake callback.
+		/// </summary>
+		/// <param name="system">The system.</param>
 		public static void SystemAwake(ISystem system)
 		{
 			if (system is Component concreteComponent)
@@ -53,17 +73,29 @@ namespace Lazlo.Gocs
 
 			World.AddSystem(system);
 		}
-
+		
+		/// <summary>
+		/// Call this during the system's OnEnable callback.
+		/// </summary>
+		/// <param name="system">The system.</param>
 		public static void SystemOnEnable(ISystem system)
 		{
 			// Currently unused but reserved.
 		}
-
+		
+		/// <summary>
+		/// Call this during the system's OnDisable callback.
+		/// </summary>
+		/// <param name="system">The system.</param>
 		public static void SystemOnDisable(ISystem system)
 		{
 			// Currently unused but reserved.
 		}
-
+		
+		/// <summary>
+		/// Call this during the system's OnDestroy callback.
+		/// </summary>
+		/// <param name="system">The system.</param>
 		public static void SystemOnDestroy(ISystem system)
 		{
 			World.RemoveSystem(system);

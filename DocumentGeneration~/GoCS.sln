@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoCS", "GoCS.csproj", "{51739AD6-258B-463B-8DB2-8727349A9C2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51739AD6-258B-463B-8DB2-8727349A9C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51739AD6-258B-463B-8DB2-8727349A9C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51739AD6-258B-463B-8DB2-8727349A9C2A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{51739AD6-258B-463B-8DB2-8727349A9C2A}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A70D4569-1AFE-4692-9AC3-7C02C33AC302}
+	EndGlobalSection
+EndGlobal

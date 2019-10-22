@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - XML Documentation for every public API
 
+### Fixed
+- Missing `TryGetComponent` on Unity 2018.4 and Unity 2019.1
+
 ### Changed
 - Renamed `IWorldCallbackReceiver.OnAddComponent` to `OnCreatedComponent` for clarity
 - Renamed `IWorldCallbackReceiver.OnRemoveComponent` to `OnDestroyingComponent` for clarity

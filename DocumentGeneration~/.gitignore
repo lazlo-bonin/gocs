@@ -1,0 +1,8 @@
+/obj
+/bin
+/doc
+/.vs
+*.DotSettings.user
+*.csproj.user
+/packages/
+!packages/repositories.config
