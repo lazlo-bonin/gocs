@@ -1036,7 +1036,7 @@ See: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## API Reference
 
-See: [API Reference](./Documentation~/API/API.md)
+See: [API Reference](./Documentation~/API/Lazlo-Gocs.md)
 
 ## Development Status
 

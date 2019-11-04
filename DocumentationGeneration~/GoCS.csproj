@@ -5,7 +5,7 @@
     <ProjectGuid>{51739AD6-258B-463B-8DB2-8727349A9C2A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>API</AssemblyName>
+    <AssemblyName>GoCS</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,9 +32,6 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>ref\UnityEngine.UI.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,15 +89,18 @@
     <Compile Include="..\Runtime\SystemEvents_Args.cs" />
     <Compile Include="..\Runtime\World.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
-  <Import Project="packages\DefaultDocumentation.0.4.3\build\DefaultDocumentation.targets" Condition="Exists('packages\DefaultDocumentation.0.4.3\build\DefaultDocumentation.targets')" />
+  <Import Project="packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets" Condition="Exists('packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\DefaultDocumentation.0.4.3\build\DefaultDocumentation.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\DefaultDocumentation.0.4.3\build\DefaultDocumentation.targets'))" />
+    <Error Condition="!Exists('packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets'))" />
   </Target>
 </Project>

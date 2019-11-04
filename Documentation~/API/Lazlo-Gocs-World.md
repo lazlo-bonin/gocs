@@ -1,12 +1,16 @@
-#### [API](./API.md 'API')
-### [Lazlo.Gocs](./API.md#Lazlo-Gocs 'Lazlo.Gocs')
-## World `type`
-Provides root-level access to systems and components.
+#### [GoCS](./index.md 'index')
+### [Lazlo.Gocs](./Lazlo-Gocs.md 'Lazlo.Gocs')
+## World Class
+Provides root-level access to systems and components.  
+```C#
+public static class World
+```
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [World](./Lazlo-Gocs-World.md 'Lazlo.Gocs.World')  
 ### Properties
 - [enableRegistries](./Lazlo-Gocs-World-enableRegistries.md 'Lazlo.Gocs.World.enableRegistries')
 ### Methods
-- [Query&lt;T&gt;(System.Boolean)](./Lazlo-Gocs-World-Query-T-(System-Boolean).md 'Lazlo.Gocs.World.Query&lt;T&gt;(System.Boolean)')
-- [Query&lt;T1, T2&gt;(System.Boolean)](./Lazlo-Gocs-World-Query-T1-_T2-(System-Boolean).md 'Lazlo.Gocs.World.Query&lt;T1, T2&gt;(System.Boolean)')
-- [Query&lt;T1, T2, T3&gt;(System.Boolean)](./Lazlo-Gocs-World-Query-T1-_T2-_T3-(System-Boolean).md 'Lazlo.Gocs.World.Query&lt;T1, T2, T3&gt;(System.Boolean)')
-- [Query&lt;T1, T2, T3, T4&gt;(System.Boolean)](./Lazlo-Gocs-World-Query-T1-_T2-_T3-_T4-(System-Boolean).md 'Lazlo.Gocs.World.Query&lt;T1, T2, T3, T4&gt;(System.Boolean)')
-- [Query&lt;T1, T2, T3, T4, T5&gt;(System.Boolean)](./Lazlo-Gocs-World-Query-T1-_T2-_T3-_T4-_T5-(System-Boolean).md 'Lazlo.Gocs.World.Query&lt;T1, T2, T3, T4, T5&gt;(System.Boolean)')
+- [Query&lt;T&gt;(bool)](./Lazlo-Gocs-World-Query-T-(bool).md 'Lazlo.Gocs.World.Query&lt;T&gt;(bool)')
+- [Query&lt;T1,T2&gt;(bool)](./Lazlo-Gocs-World-Query-T1_T2-(bool).md 'Lazlo.Gocs.World.Query&lt;T1,T2&gt;(bool)')
+- [Query&lt;T1,T2,T3&gt;(bool)](./Lazlo-Gocs-World-Query-T1_T2_T3-(bool).md 'Lazlo.Gocs.World.Query&lt;T1,T2,T3&gt;(bool)')
+- [Query&lt;T1,T2,T3,T4&gt;(bool)](./Lazlo-Gocs-World-Query-T1_T2_T3_T4-(bool).md 'Lazlo.Gocs.World.Query&lt;T1,T2,T3,T4&gt;(bool)')
+- [Query&lt;T1,T2,T3,T4,T5&gt;(bool)](./Lazlo-Gocs-World-Query-T1_T2_T3_T4_T5-(bool).md 'Lazlo.Gocs.World.Query&lt;T1,T2,T3,T4,T5&gt;(bool)')

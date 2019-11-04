@@ -13,7 +13,7 @@
         - [Event Proxies & System Events](../README.md#event-proxies--system-events)
         - [Custom Base Classes](../README.md#custom-base-classes)
         - [Mixing GoCS with OOP](../README.md#mixing-gocs-with-oop)
-- [API Reference](./API/API.md)
+- [API Reference](./API/Lazlo-Gocs.md)
 - [Forking and Contributing](../CONTRIBUTING.md)
 - [Changelog](../CHANGELOG.md)
 - [Generating Documentation](../DocumentationGeneration~/README.md)

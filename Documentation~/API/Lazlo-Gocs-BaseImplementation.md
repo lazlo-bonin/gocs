@@ -1,8 +1,12 @@
-#### [API](./API.md 'API')
-### [Lazlo.Gocs](./API.md#Lazlo-Gocs 'Lazlo.Gocs')
-## BaseImplementation `type`
+#### [GoCS](./index.md 'index')
+### [Lazlo.Gocs](./Lazlo-Gocs.md 'Lazlo.Gocs')
+## BaseImplementation Class
 Provides helpers to implement lifecycle events on components and systems.  
-Use this class when creating custom base classes from interfaces to ensure future-proofing.
+Use this class when creating custom base classes from interfaces to ensure future-proofing.  
+```C#
+public static class BaseImplementation
+```
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [BaseImplementation](./Lazlo-Gocs-BaseImplementation.md 'Lazlo.Gocs.BaseImplementation')  
 ### Methods
 - [ComponentAwake(Lazlo.Gocs.IComponent)](./Lazlo-Gocs-BaseImplementation-ComponentAwake(Lazlo-Gocs-IComponent).md 'Lazlo.Gocs.BaseImplementation.ComponentAwake(Lazlo.Gocs.IComponent)')
 - [ComponentOnDestroy(Lazlo.Gocs.IComponent)](./Lazlo-Gocs-BaseImplementation-ComponentOnDestroy(Lazlo-Gocs-IComponent).md 'Lazlo.Gocs.BaseImplementation.ComponentOnDestroy(Lazlo.Gocs.IComponent)')
