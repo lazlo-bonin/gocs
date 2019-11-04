@@ -716,7 +716,7 @@ Unity's event system is limited because it does not allow external objects to ad
 
 For example, you cannot listen to a collider's `OnCollisionEnter` event unless you create a MonoBehaviour script on the *same* GameObject.
 
-This is problematic for GoCS, because your Systems don't live on the same GameObject as your Components, and yet they are reponsible for event dispatch!
+This is problematic for GoCS, because your Systems don't live on the same GameObject as your Components, and yet they are responsible for event dispatch!
 
 To fix that issue, GoCS introduces something called event **proxies**. Proxies are small components packaged with GoCS that just forward the built-in Unity messages like  `OnCollisionEnter`, `OnTriggerEnter`, `OnTransformParentChanged`, etc. to normal GoCS events that we can then use in our systems.
 
