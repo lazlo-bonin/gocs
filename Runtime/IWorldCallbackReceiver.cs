@@ -11,8 +11,9 @@ namespace Lazlo.Gocs
 		/// Use this method to register the <see cref="IComponent"/> into <see cref="SystemComponents{T}"/> and / or <see cref="SystemEvents"/>.
 		/// </para>
 		/// </summary>
+		/// 
 		/// <param name="component">The <see cref="IComponent"/> being created.</param>
-		void OnCreatedComponent(IComponent component);
+		void OnCreatedComponent(in IComponent component);
 
 		/// <summary>
 		/// Called when any existing <see cref="IComponent"/> is destroyed.
@@ -20,7 +21,8 @@ namespace Lazlo.Gocs
 		/// Use this method to unregister the <see cref="IComponent"/> from <see cref="SystemComponents{T}"/> and / or <see cref="SystemEvents"/>.
 		/// </para>
 		/// </summary>
+		/// 
 		/// <param name="component">The <see cref="IComponent"/> being destroyed.</param>
-		void OnDestroyedComponent(IComponent component);
+		void OnDestroyedComponent(in IComponent component);
 	}
 }

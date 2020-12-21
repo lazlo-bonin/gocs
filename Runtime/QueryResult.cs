@@ -27,7 +27,7 @@ namespace Lazlo.Gocs
 
 		private QueryResult() { }
 
-		internal void Add(T result)
+		internal void Add(in T result)
 		{
 			list.Add(result);
 		}
@@ -78,7 +78,7 @@ namespace Lazlo.Gocs
 
 			private bool exceeded;
 
-			public Enumerator(QueryResult<T> parent) : this()
+			public Enumerator(in QueryResult<T> parent) : this()
 			{
 				if (parent.isDisposed)
 				{

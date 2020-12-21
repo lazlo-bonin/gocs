@@ -26,7 +26,7 @@ namespace Lazlo.Gocs
 
 		private static readonly List<IComponent> components = new List<IComponent>();
 
-		internal static void AddSystem(ISystem system)
+		internal static void AddSystem(in ISystem system)
 		{
 			if (system == null)
 			{
@@ -44,7 +44,7 @@ namespace Lazlo.Gocs
 			systems.Add(system);
 		}
 
-		internal static void RemoveSystem(ISystem system)
+		internal static void RemoveSystem(in ISystem system)
 		{
 			if (system == null)
 			{
@@ -62,7 +62,7 @@ namespace Lazlo.Gocs
 			systems.Remove(system);
 		}
 
-		internal static void AddComponent(IComponent component)
+		internal static void AddComponent(in IComponent component)
 		{
 			if (component == null)
 			{
@@ -85,7 +85,7 @@ namespace Lazlo.Gocs
 			}
 		}
 
-		internal static void RemoveComponent(IComponent component)
+		internal static void RemoveComponent(in IComponent component)
 		{
 			if (component == null)
 			{
@@ -121,7 +121,7 @@ namespace Lazlo.Gocs
 		/// <typeparam name="T">The type of the component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
 		/// <returns>The components per game object.</returns>
-		public static QueryResult<T> Query<T>(bool forceNative = false)
+		public static QueryResult<T> Query<T>(in bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(1))
 			{
@@ -146,7 +146,7 @@ namespace Lazlo.Gocs
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
 		/// <returns>The tuples of components per game object.</returns>
-		public static QueryResult<(T1, T2)> Query<T1, T2>(bool forceNative = false)
+		public static QueryResult<(T1, T2)> Query<T1, T2>(in bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(2))
 			{
@@ -179,7 +179,7 @@ namespace Lazlo.Gocs
 		/// <typeparam name="T3">The type of the third component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
 		/// <returns>The tuples of components per game object.</returns>
-		public static QueryResult<(T1, T2, T3)> Query<T1, T2, T3>(bool forceNative = false)
+		public static QueryResult<(T1, T2, T3)> Query<T1, T2, T3>(in bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(3))
 			{
@@ -215,7 +215,7 @@ namespace Lazlo.Gocs
 		/// <typeparam name="T4">The type of the fourth component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
 		/// <returns>The tuples of components per game object.</returns>
-		public static QueryResult<(T1, T2, T3, T4)> Query<T1, T2, T3, T4>(bool forceNative = false)
+		public static QueryResult<(T1, T2, T3, T4)> Query<T1, T2, T3, T4>(in bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(4))
 			{
@@ -254,7 +254,7 @@ namespace Lazlo.Gocs
 		/// <typeparam name="T5">The type of the fifth component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
 		/// <returns>The tuples of components per game object.</returns>
-		public static QueryResult<(T1, T2, T3, T4, T5)> Query<T1, T2, T3, T4, T5>(bool forceNative = false)
+		public static QueryResult<(T1, T2, T3, T4, T5)> Query<T1, T2, T3, T4, T5>(in bool forceNative = false)
 		{
 			using (var filter = QueryFilter.New(5))
 			{
