@@ -6,7 +6,7 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Holds the results from a world component query.
-	/// Use this in a <code>foreach</code> loop to enumerate over the tuples of components.
+	/// Use this in a foreach loop to enumerate over the tuples of components.
 	/// </summary>
 	/// <remarks>
 	/// This enumerable does not allocate memory when enumerating.
