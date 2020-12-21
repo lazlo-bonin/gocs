@@ -8,11 +8,15 @@ namespace Lazlo.Gocs
 	/// </summary>
 	public static class World
 	{
+
 		/// <summary>
-		/// Whether cached registries should be used for managed components.
-		/// Disable to improve initialization and destruction speed of components.
+		/// Whether cached registries should be used for managed <see cref="IComponent"/>s.
+		/// <para>
+		/// Disable to improve initialization and destruction speed of <see cref="IComponent"/>s.
+		/// </para><para>
 		/// However, when disabled, managed queries will no longer be available
 		/// and <see cref="SystemComponents{T}"/> should be used instead.
+		/// </para>
 		/// </summary>
 		public static bool enableRegistries { get; set; } = true;
 
@@ -51,7 +55,7 @@ namespace Lazlo.Gocs
 			{
 				foreach (var component in components)
 				{
-					callbackReceiver.OnDestroyingComponent(component);
+					callbackReceiver.OnDestroyedComponent(component);
 				}
 			}
 
@@ -92,7 +96,7 @@ namespace Lazlo.Gocs
 			{
 				if (system is IWorldCallbackReceiver callbackReceiver)
 				{
-					callbackReceiver.OnDestroyingComponent(component);
+					callbackReceiver.OnDestroyedComponent(component);
 				}
 			}
 
