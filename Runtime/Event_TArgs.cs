@@ -6,12 +6,17 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Represents an event with arguments.
-	/// Events support assigning handlers and invoking from anywhere. 
+	/// <para>
+	/// Events support assigning handlers and invoking from anywhere.
+	/// </para> 
 	/// </summary>
+	/// 
 	/// <remarks>
 	/// Use an arguments struct or class if you need to pass multiple arguments.
 	/// </remarks>
+	///
 	/// <typeparam name="TArgs">The type of argument.</typeparam>
+	/// 
 	/// <seealso cref="Event"/>
 	public sealed class Event<TArgs>
 	{

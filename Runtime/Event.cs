@@ -6,7 +6,9 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Represents an event without arguments.
-	/// Events support assigning handlers and invoking from anywhere. 
+	/// <para>
+	/// Events support assigning handlers and invoking from anywhere.
+	/// </para> 
 	/// </summary>
 	/// <seealso cref="Event{TArgs}"/>
 	public sealed class Event

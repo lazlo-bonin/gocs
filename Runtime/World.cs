@@ -8,11 +8,15 @@ namespace Lazlo.Gocs
 	/// </summary>
 	public static class World
 	{
+
 		/// <summary>
-		/// Whether cached registries should be used for managed components.
-		/// Disable to improve initialization and destruction speed of components.
+		/// Whether cached registries should be used for managed <see cref="IComponent"/>s.
+		/// <para>
+		/// Disable to improve initialization and destruction speed of <see cref="IComponent"/>s.
+		/// </para><para>
 		/// However, when disabled, managed queries will no longer be available
 		/// and <see cref="SystemComponents{T}"/> should be used instead.
+		/// </para>
 		/// </summary>
 		public static bool enableRegistries { get; set; } = true;
 
@@ -51,7 +55,7 @@ namespace Lazlo.Gocs
 			{
 				foreach (var component in components)
 				{
-					callbackReceiver.OnDestroyingComponent(component);
+					callbackReceiver.OnDestroyedComponent(component);
 				}
 			}
 
@@ -92,7 +96,7 @@ namespace Lazlo.Gocs
 			{
 				if (system is IWorldCallbackReceiver callbackReceiver)
 				{
-					callbackReceiver.OnDestroyingComponent(component);
+					callbackReceiver.OnDestroyedComponent(component);
 				}
 			}
 
@@ -113,6 +117,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain the specified component.
 		/// </summary>
+		/// 
 		/// <typeparam name="T">The type of the component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
 		/// <returns>The components per game object.</returns>
@@ -136,6 +141,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
@@ -167,6 +173,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <typeparam name="T3">The type of the third component.</typeparam>
@@ -201,6 +208,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <typeparam name="T3">The type of the third component.</typeparam>
@@ -238,6 +246,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <typeparam name="T3">The type of the third component.</typeparam>

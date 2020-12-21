@@ -15,6 +15,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required component and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
 		public bool Add(GameObject go)
@@ -25,6 +26,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required component and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
 		public bool Remove(GameObject go)
@@ -35,6 +37,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required component and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <param name="c">The returned required component.</param>
 		/// <returns>Whether the game object was added.</returns>
@@ -46,6 +49,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required component and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <param name="c">The returned required component.</param>
 		/// <returns>Whether the game object was removed.</returns>
@@ -64,6 +68,7 @@ namespace Lazlo.Gocs
 	/// <summary>
 	/// Holds a high-performance registry of components required by a system.
 	/// </summary>
+	/// 
 	/// <typeparam name="T1">The type of the first required component.</typeparam>
 	/// <typeparam name="T2">The type of the second required component.</typeparam>
 	public sealed class SystemComponents<T1, T2> : IEnumerable<(T1, T2)>
@@ -83,6 +88,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
 		public bool Remove(GameObject go)
@@ -93,6 +99,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required components and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
@@ -105,6 +112,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
@@ -124,6 +132,7 @@ namespace Lazlo.Gocs
 	/// <summary>
 	/// Holds a high-performance registry of components required by a system.
 	/// </summary>
+	/// 
 	/// <typeparam name="T1">The type of the first required component.</typeparam>
 	/// <typeparam name="T2">The type of the second required component.</typeparam>
 	/// <typeparam name="T3">The type of the third required component.</typeparam>
@@ -134,6 +143,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required components and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
 		public bool Add(GameObject go)
@@ -144,6 +154,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
 		public bool Remove(GameObject go)
@@ -154,6 +165,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required components and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
@@ -167,6 +179,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
@@ -187,6 +200,7 @@ namespace Lazlo.Gocs
 	/// <summary>
 	/// Holds a high-performance registry of components required by a system.
 	/// </summary>
+	/// 
 	/// <typeparam name="T1">The type of the first required component.</typeparam>
 	/// <typeparam name="T2">The type of the second required component.</typeparam>
 	/// <typeparam name="T3">The type of the third required component.</typeparam>
@@ -198,6 +212,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required components and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
 		public bool Add(GameObject go)
@@ -208,6 +223,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
 		public bool Remove(GameObject go)
@@ -218,6 +234,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required components and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
@@ -232,6 +249,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
@@ -253,6 +271,7 @@ namespace Lazlo.Gocs
 	/// <summary>
 	/// Holds a high-performance registry of components required by a system.
 	/// </summary>
+	/// 
 	/// <typeparam name="T1">The type of the first required component.</typeparam>
 	/// <typeparam name="T2">The type of the second required component.</typeparam>
 	/// <typeparam name="T3">The type of the third required component.</typeparam>
@@ -265,6 +284,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required components and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
 		public bool Add(GameObject go)
@@ -275,6 +295,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
 		public bool Remove(GameObject go)
@@ -285,6 +306,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Adds the specified game object to the registry if it contains the required components and if it wasn't already added before.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
@@ -300,6 +322,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Removes the specified game object from the registry if it contains the required components and if it had been added previously.
 		/// </summary>
+		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
