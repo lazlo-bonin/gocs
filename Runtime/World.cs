@@ -209,7 +209,7 @@ namespace Lazlo.Gocs
 		/// <returns>The tuples of components per game object.</returns>
 		public static QueryResult<(T1, T2, T3, T4)> Query<T1, T2, T3, T4>(bool forceNative = false)
 		{
-			using (var filter = QueryFilter.New(3))
+			using (var filter = QueryFilter.New(4))
 			{
 				var pass1 = filter.Pass<T1>(forceNative);
 				var pass2 = filter.Pass<T2>(forceNative);
@@ -247,7 +247,7 @@ namespace Lazlo.Gocs
 		/// <returns>The tuples of components per game object.</returns>
 		public static QueryResult<(T1, T2, T3, T4, T5)> Query<T1, T2, T3, T4, T5>(bool forceNative = false)
 		{
-			using (var filter = QueryFilter.New(3))
+			using (var filter = QueryFilter.New(5))
 			{
 				var pass1 = filter.Pass<T1>(forceNative);
 				var pass2 = filter.Pass<T2>(forceNative);
