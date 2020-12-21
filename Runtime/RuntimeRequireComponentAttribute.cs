@@ -5,7 +5,9 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Automatically adds the required component as a dependency at runtime.
-	/// Unlike [RequireComponent], this attribute will not require the component during edit mode.
+	/// <para>
+	/// Unlike <see cref="RequireComponent"/>, this attribute will not require the component during edit mode.
+	/// </para>
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true, Inherited = true)]
 	public sealed class RuntimeRequireComponentAttribute : Attribute

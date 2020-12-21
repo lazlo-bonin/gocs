@@ -5,7 +5,7 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Provides helpers to implement lifecycle events on <see cref="IComponent"/>s and <see cref="ISystem"/>s.
-	/// <para> Use this class when creating custom base classes from interfaces to ensure future-proofing. </para> 
+	/// <para> Use this class when creating custom base classes from interfaces to ensure future-proofing.</para> 
 	/// </summary>
 	public static class BaseImplementation
 	{

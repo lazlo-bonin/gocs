@@ -10,6 +10,7 @@ namespace Lazlo.Gocs
 	/// optionally <see cref="IWorldCallbackReceiver"/> if you
 	/// cannot derive from this class.
 	/// </remarks>
+	/// 
 	/// <seealso cref="BaseImplementation"/>
 	public abstract class BaseSystem : MonoBehaviour, ISystem, IWorldCallbackReceiver
 	{

@@ -117,6 +117,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain the specified component.
 		/// </summary>
+		/// 
 		/// <typeparam name="T">The type of the component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
 		/// <returns>The components per game object.</returns>
@@ -140,6 +141,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <param name="forceNative">Whether a native query should be forced. Enable when querying in edit-mode.</param>
@@ -171,6 +173,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <typeparam name="T3">The type of the third component.</typeparam>
@@ -205,6 +208,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <typeparam name="T3">The type of the third component.</typeparam>
@@ -242,6 +246,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Finds all game objects that contain all the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <typeparam name="T3">The type of the third component.</typeparam>
