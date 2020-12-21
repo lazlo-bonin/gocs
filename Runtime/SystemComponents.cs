@@ -18,7 +18,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go)
+		public bool Add(in GameObject go)
 		{
 			return Add(go, out var ct);
 		}
@@ -29,7 +29,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go)
+		public bool Remove(in GameObject go)
 		{
 			return Remove(go, out var c);
 		}
@@ -41,7 +41,7 @@ namespace Lazlo.Gocs
 		/// <param name="go">The game object to add.</param>
 		/// <param name="c">The returned required component.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go, out T c)
+		public bool Add(in GameObject go, out T c)
 		{
 			return go.Has(out c) && components.Add(c);
 		}
@@ -53,7 +53,7 @@ namespace Lazlo.Gocs
 		/// <param name="go">The game object to remove.</param>
 		/// <param name="c">The returned required component.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go, out T c)
+		public bool Remove(in GameObject go, out T c)
 		{
 			return go.Has(out c) && components.Remove(c);
 		}
@@ -80,7 +80,7 @@ namespace Lazlo.Gocs
 		/// </summary>
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go)
+		public bool Add(in GameObject go)
 		{
 			return Add(go, out var c1, out var c2);
 		}
@@ -91,7 +91,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go)
+		public bool Remove(in GameObject go)
 		{
 			return Remove(go, out var c1, out var c2);
 		}
@@ -104,7 +104,7 @@ namespace Lazlo.Gocs
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go, out T1 c1, out T2 c2)
+		public bool Add(in GameObject go, out T1 c1, out T2 c2)
 		{
 			return go.Has(out c1, out c2) && components.Add((c1, c2));
 		}
@@ -117,7 +117,7 @@ namespace Lazlo.Gocs
 		/// <param name="c1">The first required component.</param>
 		/// <param name="c2">The second required component.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go, out T1 c1, out T2 c2)
+		public bool Remove(in GameObject go, out T1 c1, out T2 c2)
 		{
 			return go.Has(out c1, out c2) && components.Remove((c1, c2));
 		}
@@ -146,7 +146,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go)
+		public bool Add(in GameObject go)
 		{
 			return Add(go, out var c1, out var c2, out var c3);
 		}
@@ -157,7 +157,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go)
+		public bool Remove(in GameObject go)
 		{
 			return Remove(go, out var c1, out var c2, out var c3);
 		}
@@ -171,7 +171,7 @@ namespace Lazlo.Gocs
 		/// <param name="c2">The second required component.</param>
 		/// <param name="c3">The third required component.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go, out T1 c1, out T2 c2, out T3 c3)
+		public bool Add(in GameObject go, out T1 c1, out T2 c2, out T3 c3)
 		{
 			return go.Has(out c1, out c2, out c3) && components.Add((c1, c2, c3));
 		}
@@ -185,7 +185,7 @@ namespace Lazlo.Gocs
 		/// <param name="c2">The second required component.</param>
 		/// <param name="c3">The third required component.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go, out T1 c1, out T2 c2, out T3 c3)
+		public bool Remove(in GameObject go, out T1 c1, out T2 c2, out T3 c3)
 		{
 			return go.Has(out c1, out c2, out c3) && components.Remove((c1, c2, c3));
 		}
@@ -215,7 +215,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go)
+		public bool Add(in GameObject go)
 		{
 			return Add(go, out var c1, out var c2, out var c3, out var c4);
 		}
@@ -226,7 +226,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go)
+		public bool Remove(in GameObject go)
 		{
 			return Remove(go, out var c1, out var c2, out var c3, out var c4);
 		}
@@ -241,7 +241,7 @@ namespace Lazlo.Gocs
 		/// <param name="c3">The third required component.</param>
 		/// <param name="c4">The fourth required component.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4)
+		public bool Add(in GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4)
 		{
 			return go.Has(out c1, out c2, out c3, out c4) && components.Add((c1, c2, c3, c4));
 		}
@@ -256,7 +256,7 @@ namespace Lazlo.Gocs
 		/// <param name="c3">The third required component.</param>
 		/// <param name="c4">The fourth required component.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4)
+		public bool Remove(in GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4)
 		{
 			return go.Has(out c1, out c2, out c3, out c4) && components.Remove((c1, c2, c3, c4));
 		}
@@ -287,7 +287,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to add.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go)
+		public bool Add(in GameObject go)
 		{
 			return Add(go, out var c1, out var c2, out var c3, out var c4, out var c5);
 		}
@@ -298,7 +298,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="go">The game object to remove.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go)
+		public bool Remove(in GameObject go)
 		{
 			return Remove(go, out var c1, out var c2, out var c3, out var c4, out var c5);
 		}
@@ -314,7 +314,7 @@ namespace Lazlo.Gocs
 		/// <param name="c4">The fourth required component.</param>
 		/// <param name="c5">The fifth required component.</param>
 		/// <returns>Whether the game object was added.</returns>
-		public bool Add(GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4, out T5 c5)
+		public bool Add(in GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4, out T5 c5)
 		{
 			return go.Has(out c1, out c2, out c3, out c4, out c5) && components.Add((c1, c2, c3, c4, c5));
 		}
@@ -330,7 +330,7 @@ namespace Lazlo.Gocs
 		/// <param name="c4">The fourth required component.</param>
 		/// <param name="c5">The fifth required component.</param>
 		/// <returns>Whether the game object was removed.</returns>
-		public bool Remove(GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4, out T5 c5)
+		public bool Remove(in GameObject go, out T1 c1, out T2 c2, out T3 c3, out T4 c4, out T5 c5)
 		{
 			return go.Has(out c1, out c2, out c3, out c4, out c5) && components.Remove((c1, c2, c3, c4, c5));
 		}

@@ -9,7 +9,7 @@ namespace Lazlo.Gocs
 	{
 		private static readonly Dictionary<Type, Type[]> componentTypeToRequiredComponentTypes = new Dictionary<Type, Type[]>(ReferenceEqualityComparer<Type>.Instance);
 
-		private static IEnumerable<Type> GetRequiredComponentTypes(Type componentType)
+		private static IEnumerable<Type> GetRequiredComponentTypes(in Type componentType)
 		{
 			if (componentType == null)
 			{
@@ -49,7 +49,7 @@ namespace Lazlo.Gocs
 			}
 		}
 
-		public static void AddRuntimeRequiredComponents(Component component)
+		public static void AddRuntimeRequiredComponents(in Component component)
 		{
 			if (component == null)
 			{
@@ -62,7 +62,7 @@ namespace Lazlo.Gocs
 			}
 		}
 
-		public static Component GetOrAddComponent(this GameObject go, Type componentType)
+		public static Component GetOrAddComponent(this GameObject go, in Type componentType)
 		{
 			if (!go.TryGetComponent(componentType, out var component))
 			{
@@ -72,7 +72,7 @@ namespace Lazlo.Gocs
 			return component;
 		}
 
-		public static Component GetOrAddComponent(this GameObject go, Type componentType, Type defaultComponentType)
+		public static Component GetOrAddComponent(this GameObject go, in Type componentType, in Type defaultComponentType)
 		{
 			if (!go.TryGetComponent(componentType, out var component))
 			{

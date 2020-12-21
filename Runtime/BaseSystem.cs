@@ -5,6 +5,7 @@ namespace Lazlo.Gocs
 	/// <summary>
 	/// The base class from which to derive systems.
 	/// </summary>
+	/// 
 	/// <remarks>
 	/// You can also manually implement <see cref="ISystem"/> and
 	/// optionally <see cref="IWorldCallbackReceiver"/> if you
@@ -14,8 +15,8 @@ namespace Lazlo.Gocs
 	/// <seealso cref="BaseImplementation"/>
 	public abstract class BaseSystem : MonoBehaviour, ISystem, IWorldCallbackReceiver
 	{
-		public virtual void OnCreatedComponent(IComponent component) { }
-		public virtual void OnDestroyedComponent(IComponent component) { }
+		public virtual void OnCreatedComponent(in IComponent component) { }
+		public virtual void OnDestroyedComponent(in IComponent component) { }
 
 		protected virtual void Awake()
 		{

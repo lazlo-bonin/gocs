@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -17,6 +18,7 @@ namespace Lazlo.Gocs.Benchmark
 		private readonly SystemComponents<BenchmarkComponent1, BenchmarkComponent2> components = new SystemComponents<BenchmarkComponent1, BenchmarkComponent2>();
 
 		private const int COUNT = 10_000;
+		private const double _NANO_TO_MILLI = 0.000001;
 
 		private int objective;
 
@@ -127,7 +129,7 @@ namespace Lazlo.Gocs.Benchmark
 			{
 				systemQueryTimes.Add(systemQueryRecorder.elapsedNanoseconds);	
 			}
-			systemQueryAverage = ConvertNanosecondsToMilliseconds(nanoseconds: systemQueryTimes.Count > 0 ? systemQueryTimes.Average() : 0.0);
+			systemQueryAverage = systemQueryTimes.Average() * _NANO_TO_MILLI;
 			
 			Debug.Assert(condition: tally == objective);
 			
@@ -149,7 +151,7 @@ namespace Lazlo.Gocs.Benchmark
 			{
 				worldManagedQueryTimes.Add(worldManagedQueryRecorder.elapsedNanoseconds);	
 			}
-			worldManagedQueryAverage = ConvertNanosecondsToMilliseconds(nanoseconds: worldManagedQueryTimes.Count > 0 ? worldManagedQueryTimes.Average() : 0.0);
+			worldManagedQueryAverage = worldManagedQueryTimes.Average() * _NANO_TO_MILLI;
 			
 			Debug.Assert(condition: tally == objective);
 		}
@@ -169,15 +171,9 @@ namespace Lazlo.Gocs.Benchmark
 			{
 				worldNativeQueryTimes.Add(worldNativeQueryRecorder.elapsedNanoseconds);	
 			}
-			worldNativeQueryAverage = ConvertNanosecondsToMilliseconds(nanoseconds: worldNativeQueryTimes.Count > 0 ? worldNativeQueryTimes.Average() : 0.0);
+			worldNativeQueryAverage = worldNativeQueryTimes.Average() * _NANO_TO_MILLI;
 			
 			Debug.Assert(condition: tally == objective);
 		}
-
-		private static double ConvertNanosecondsToMilliseconds(in double nanoseconds)
-		{
-			return nanoseconds * 0.000001;
-		}
-
 	}
 }

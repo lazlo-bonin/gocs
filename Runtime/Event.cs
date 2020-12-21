@@ -27,7 +27,7 @@ namespace Lazlo.Gocs
 		/// Creates a new event with a specified handler.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public Event(Action handler) : this()
+		public Event(in Action handler) : this()
 		{
 			AddHandler(handler);
 		}
@@ -36,7 +36,7 @@ namespace Lazlo.Gocs
 		/// Adds a handler to the event.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public void AddHandler(Action handler)
+		public void AddHandler(in Action handler)
 		{
 			if (handler == null)
 			{
@@ -50,7 +50,7 @@ namespace Lazlo.Gocs
 		/// Removes a handler from the event.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public void RemoveHandler(Action handler)
+		public void RemoveHandler(in Action handler)
 		{
 			if (handler == null)
 			{

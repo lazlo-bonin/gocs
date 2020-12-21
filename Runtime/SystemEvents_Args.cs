@@ -33,7 +33,7 @@ namespace Lazlo.Gocs
 		/// 
 		/// <param name="event">The event on which to add or remove the handler.</param>
 		/// <returns>The event handler.</returns>
-		public Action<TArgs> this[Event<TArgs> @event]
+		public Action<TArgs> this[in Event<TArgs> @event]
 		{
 			get
 			{

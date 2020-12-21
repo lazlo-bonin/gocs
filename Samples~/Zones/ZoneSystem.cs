@@ -10,7 +10,7 @@ namespace Lazlo.Gocs.Examples.Zones
 
 		private readonly SystemEvents<Collider> exitEvents = new SystemEvents<Collider>();
 
-		public override void OnCreatedComponent(IComponent component)
+		public override void OnCreatedComponent(in IComponent component)
 		{
 			if (components.Add(component.gameObject, out var zone, out var trigger))
 			{
@@ -19,7 +19,7 @@ namespace Lazlo.Gocs.Examples.Zones
 			}
 		}
 
-		public override void OnDestroyingComponent(IComponent component)
+		public override void OnDestroyedComponent(in IComponent component)
 		{
 			if (components.Remove(component.gameObject, out var zone, out var trigger))
 			{

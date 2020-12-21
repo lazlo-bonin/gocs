@@ -43,6 +43,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Checks the game object for the specified component.
 		/// </summary>
+		/// 
 		/// <typeparam name="T">The type of the component.</typeparam>
 		/// <param name="go">The game object.</param>
 		/// <param name="component">The returned component.</param>
@@ -55,6 +56,7 @@ namespace Lazlo.Gocs
 		/// <summary>
 		/// Checks the game object for the specified components.
 		/// </summary>
+		/// 
 		/// <typeparam name="T1">The type of the first component.</typeparam>
 		/// <typeparam name="T2">The type of the second component.</typeparam>
 		/// <param name="go">The game object.</param>

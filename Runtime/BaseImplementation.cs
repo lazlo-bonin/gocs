@@ -15,7 +15,7 @@ namespace Lazlo.Gocs
 		/// Call this during the component's Awake callback.
 		/// </summary>
 		/// <param name="component">The component.</param>
-		public static void ComponentAwake(IComponent component)
+		public static void ComponentAwake(in IComponent component)
 		{
 			if (component is Component concreteComponent)
 			{
@@ -29,7 +29,7 @@ namespace Lazlo.Gocs
 		/// Call this during the component's OnEnable callback.
 		/// </summary>
 		/// <param name="component">The component.</param>
-		public static void ComponentOnEnable(IComponent component)
+		public static void ComponentOnEnable(in IComponent component)
 		{
 			// Currently unused but reserved.
 		}
@@ -38,7 +38,7 @@ namespace Lazlo.Gocs
 		/// Call this during the component's OnDisable callback.
 		/// </summary>
 		/// <param name="component">The component.</param>
-		public static void ComponentOnDisable(IComponent component)
+		public static void ComponentOnDisable(in IComponent component)
 		{
 			// Currently unused but reserved.
 		}
@@ -47,7 +47,7 @@ namespace Lazlo.Gocs
 		/// Call this during the component's OnDestroy callback.
 		/// </summary>
 		/// <param name="component">The component.</param>
-		public static void ComponentOnDestroy(IComponent component)
+		public static void ComponentOnDestroy(in IComponent component)
 		{
 			World.RemoveComponent(component);
 		}
@@ -62,7 +62,7 @@ namespace Lazlo.Gocs
 		/// Call this during the system's Awake callback.
 		/// </summary>
 		/// <param name="system">The system.</param>
-		public static void SystemAwake(ISystem system)
+		public static void SystemAwake(in ISystem system)
 		{
 			if (system is Component concreteComponent)
 			{
@@ -76,7 +76,7 @@ namespace Lazlo.Gocs
 		/// Call this during the system's OnEnable callback.
 		/// </summary>
 		/// <param name="system">The system.</param>
-		public static void SystemOnEnable(ISystem system)
+		public static void SystemOnEnable(in ISystem system)
 		{
 			// Currently unused but reserved.
 		}
@@ -85,7 +85,7 @@ namespace Lazlo.Gocs
 		/// Call this during the system's OnDisable callback.
 		/// </summary>
 		/// <param name="system">The system.</param>
-		public static void SystemOnDisable(ISystem system)
+		public static void SystemOnDisable(in ISystem system)
 		{
 			// Currently unused but reserved.
 		}
@@ -94,7 +94,7 @@ namespace Lazlo.Gocs
 		/// Call this during the system's OnDestroy callback.
 		/// </summary>
 		/// <param name="system">The system.</param>
-		public static void SystemOnDestroy(ISystem system)
+		public static void SystemOnDestroy(in ISystem system)
 		{
 			World.RemoveSystem(system);
 		}

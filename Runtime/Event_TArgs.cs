@@ -34,7 +34,7 @@ namespace Lazlo.Gocs
 		/// Creates a new event with a specified handler handler.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public Event(Action<TArgs> handler) : this()
+		public Event(in Action<TArgs> handler) : this()
 		{
 			AddHandler(handler);
 		}
@@ -43,7 +43,7 @@ namespace Lazlo.Gocs
 		/// Adds a handler to the event.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public void AddHandler(Action<TArgs> handler)
+		public void AddHandler(in Action<TArgs> handler)
 		{
 			if (handler == null)
 			{
@@ -57,7 +57,7 @@ namespace Lazlo.Gocs
 		/// Removes a handler from the event.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public void RemoveHandler(Action<TArgs> handler)
+		public void RemoveHandler(in Action<TArgs> handler)
 		{
 			if (handler == null)
 			{
@@ -71,7 +71,7 @@ namespace Lazlo.Gocs
 		/// Invokes every handler on the event.
 		/// </summary>
 		/// <param name="args">The event arguments.</param>
-		public void Invoke(TArgs args)
+		public void Invoke(in TArgs args)
 		{
 			foreach (var handler in handlers)
 			{

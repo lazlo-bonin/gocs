@@ -9,7 +9,7 @@ namespace Lazlo.Gocs
     {
         private static readonly Dictionary<Type, IRegistry> componentTypeToRegistry = new Dictionary<Type, IRegistry>(ReferenceEqualityComparer<Type>.Instance);
 
-        private static IRegistry GetRegistry(Type componentType)
+        private static IRegistry GetRegistry(in Type componentType)
         {
             if (!componentTypeToRegistry.TryGetValue(componentType, out var registry))
             {
@@ -35,7 +35,7 @@ namespace Lazlo.Gocs
             }
         }
 
-        public static void Add(IComponent component)
+        public static void Add(in IComponent component)
         {
             foreach (var registry in GetRegistries(component))
             {
@@ -43,7 +43,7 @@ namespace Lazlo.Gocs
             }
         }
 
-        public static void Remove(IComponent component)
+        public static void Remove(in IComponent component)
         {
             foreach (var registry in GetRegistries(component))
             {
