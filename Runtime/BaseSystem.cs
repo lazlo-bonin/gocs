@@ -14,7 +14,7 @@ namespace Lazlo.Gocs
 	public abstract class BaseSystem : MonoBehaviour, ISystem, IWorldCallbackReceiver
 	{
 		public virtual void OnCreatedComponent(IComponent component) { }
-		public virtual void OnDestroyingComponent(IComponent component) { }
+		public virtual void OnDestroyedComponent(IComponent component) { }
 
 		protected virtual void Awake()
 		{
