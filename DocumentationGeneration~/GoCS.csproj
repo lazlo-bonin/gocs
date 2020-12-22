@@ -1,0 +1,106 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Documentation</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{51739AD6-258B-463B-8DB2-8727349A9C2A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>GoCS</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>doc\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RootNamespace>Lazlo.Gocs</RootNamespace>
+    <DocumentationFile>doc\Lazlo.Gocs.xml</DocumentationFile>
+    <DefaultDocumentationFolder>..\Documentation~\API</DefaultDocumentationFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine">
+      <HintPath>ref\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>ref\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Runtime\BaseComponent.cs" />
+    <Compile Include="..\Runtime\BaseImplementation.cs" />
+    <Compile Include="..\Runtime\BaseSystem.cs" />
+    <Compile Include="..\Runtime\ComponentUtility.cs" />
+    <Compile Include="..\Runtime\Event.cs" />
+    <Compile Include="..\Runtime\Event_TArgs.cs" />
+    <Compile Include="..\Runtime\IComponent.cs" />
+    <Compile Include="..\Runtime\Internal\ComponentTypeUtility.cs" />
+    <Compile Include="..\Runtime\Internal\FastUnityObjectComparer.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\ArrayPool.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\DictionaryPool.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\GenericPool.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\HashSetPool.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\IPoolable.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\ListPool.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\QueuePool.cs" />
+    <Compile Include="..\Runtime\Internal\Pooling\StackPool.cs" />
+    <Compile Include="..\Runtime\Internal\QueryFilter.cs" />
+    <Compile Include="..\Runtime\Internal\ReferenceEqualityComparer.cs" />
+    <Compile Include="..\Runtime\Internal\Registries\IRegistry.cs" />
+    <Compile Include="..\Runtime\Internal\Registries\Registries.cs" />
+    <Compile Include="..\Runtime\Internal\Registries\Registry.cs" />
+    <Compile Include="..\Runtime\Internal\Registries\RegistryType.cs" />
+    <Compile Include="..\Runtime\Internal\RuntimeRequiredComponentUtility.cs" />
+    <Compile Include="..\Runtime\ISystem.cs" />
+    <Compile Include="..\Runtime\IWorldCallbackReceiver.cs" />
+    <Compile Include="..\Runtime\Proxies\AnimatorProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\ApplicationProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\ButtonProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\Collision2DProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\CollisionProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\ControllerColliderProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\DropdownProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\GuiProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\InputFieldProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\Joint2DProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\JointProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\MouseProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\ParticleProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\ScrollbarProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\ScrollRectProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\SliderProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\ToggleProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\TransformProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\Trigger2DProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\TriggerProxy.cs" />
+    <Compile Include="..\Runtime\Proxies\VisibilityProxy.cs" />
+    <Compile Include="..\Runtime\QueryResult.cs" />
+    <Compile Include="..\Runtime\RuntimeRequireComponentAttribute.cs" />
+    <Compile Include="..\Runtime\SystemComponents.cs" />
+    <Compile Include="..\Runtime\SystemEvents.cs" />
+    <Compile Include="..\Runtime\SystemEvents_Args.cs" />
+    <Compile Include="..\Runtime\World.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+  <Import Project="packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets" Condition="Exists('packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\DefaultDocumentation.0.5.1\build\DefaultDocumentation.targets'))" />
+  </Target>
+</Project>

@@ -5,8 +5,11 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Manages event handler registration for a system.
+	/// <para>
 	/// This version does not support event arguments.
+	/// </para>
 	/// </summary>
+	/// 
 	/// <seealso cref="SystemEvents{TArgs}"/>
 	public sealed class SystemEvents
 	{
@@ -14,15 +17,21 @@ namespace Lazlo.Gocs
 
 		/// <summary>
 		/// Adds or removes a system event handler for the specified event.
+		/// <para>
 		/// In <see cref="IWorldCallbackReceiver.OnCreatedComponent"/>, pass a handler to add it to the event.
+		/// </para>
+		/// <para>
 		/// In <see cref="IWorldCallbackReceiver.OnDestroyingComponent"/>, pass null to remove the handler from the event.
+		/// </para>
 		/// </summary>
+		/// 
 		/// <remarks>
 		/// System events can only add one handler per event.
 		/// </remarks>
+		/// 
 		/// <param name="event">The event on which to add or remove the handler.</param>
 		/// <returns>The event handler.</returns>
-		public Action this[Event @event]
+		public Action this[in Event @event]
 		{
 			get
 			{

@@ -27,7 +27,7 @@ namespace Lazlo.Gocs
 	        }
         }
 
-        public void Add(IComponent component)
+        public void Add(in IComponent component)
         {
             if (component == null)
             {
@@ -52,7 +52,7 @@ namespace Lazlo.Gocs
             gomap.Add(tComponent);
         }
 
-        public void Remove(IComponent component)
+        public void Remove(in IComponent component)
         {
             if (component == null)
             {
@@ -81,7 +81,7 @@ namespace Lazlo.Gocs
             }
         }
 
-        public void Filter(QueryFilter filter, bool forceNative)
+        public void Filter(in QueryFilter filter, in bool forceNative)
         {
             if (forceNative || mode == RegistryMode.Native || !World.enableRegistries)
             {
@@ -93,7 +93,7 @@ namespace Lazlo.Gocs
             }
         }
 
-        private void ManagedFilter(QueryFilter filter)
+        private void ManagedFilter(in QueryFilter filter)
         {
             if (filter.pass == 0)
             {
@@ -136,7 +136,7 @@ namespace Lazlo.Gocs
             }
         }
 
-        private void NativeFilter(QueryFilter filter)
+        private void NativeFilter(in QueryFilter filter)
         {
             if (filter.pass == 0)
             {

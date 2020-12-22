@@ -17,7 +17,7 @@ namespace Lazlo.Gocs
 
 		private QueryFilter() { }
 
-		public static QueryFilter New(int passes)
+		public static QueryFilter New(in int passes)
 		{
 			if (passes < 1)
 			{
@@ -36,7 +36,7 @@ namespace Lazlo.Gocs
 			return filter;
 		}
 
-		public int Pass<T>(bool forceNative)
+		public int Pass<T>(in bool forceNative)
 		{
 			if (pass >= passes)
 			{
@@ -48,12 +48,12 @@ namespace Lazlo.Gocs
 			return pass++;
 		}
 
-		internal void Map(GameObject gameObject, object component)
+		internal void Map(in GameObject gameObject, in object component)
 		{
 			maps[pass].Add(gameObject, component);
 		}
 
-		public T Result<T>(int pass, GameObject gameObject)
+		public T Result<T>(in int pass, in GameObject gameObject)
 		{
 			return (T)maps[pass][gameObject];
 		}

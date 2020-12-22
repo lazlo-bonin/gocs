@@ -25,12 +25,12 @@ namespace Lazlo.Gocs
 			return componentTypes;
 		}
 
-		public static bool IsManagedComponentType(Type type)
+		public static bool IsManagedComponentType(in Type type)
 		{
 			return typeof(IComponent).IsAssignableFrom(type);
 		}
 
-		public static bool IsNativeComponentType(Type type)
+		public static bool IsNativeComponentType(in Type type)
 		{
 			return typeof(Component).IsAssignableFrom(type);
 		}

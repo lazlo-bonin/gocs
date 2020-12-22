@@ -6,7 +6,7 @@
 
 🔀 To be clear, GoCS is entirely unrelated to Unity's new [data oriented tech stack (DOTS)](https://unity.com/dots).
 
-🎓 Before you continue, if you're a bit confused with acronyms and concepts like ECS, OOP, IOC or DOTS, you should start with this basic introduction: [Intro: OOP vs ECS in Unity](INTRO.md)
+🎓 Before you continue, if you're a bit confused with acronyms and concepts like ECS, OOP, IOC or DOTS, you should start with this basic introduction: [Intro: OOP vs ECS in Unity](Documentation~/Manual/Intro.md)
 
 # Why GoCS?
 
@@ -716,7 +716,7 @@ Unity's event system is limited because it does not allow external objects to ad
 
 For example, you cannot listen to a collider's `OnCollisionEnter` event unless you create a MonoBehaviour script on the *same* GameObject.
 
-This is problematic for GoCS, because your Systems don't live on the same GameObject as your Components, and yet they are reponsible for event dispatch!
+This is problematic for GoCS, because your Systems don't live on the same GameObject as your Components, and yet they are responsible for event dispatch!
 
 To fix that issue, GoCS introduces something called event **proxies**. Proxies are small components packaged with GoCS that just forward the built-in Unity messages like  `OnCollisionEnter`, `OnTriggerEnter`, `OnTransformParentChanged`, etc. to normal GoCS events that we can then use in our systems.
 
@@ -774,7 +774,7 @@ class DestructionSystem : BaseSystem
         if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
         {
             // Add the system event handler on the proxy
-            collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+            collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
         }
     }
 
@@ -818,7 +818,7 @@ public override void OnCreatedComponent(IComponent c)
     
     if (c.gameObject.Has(out IDestructible destructible, out CollisionProxy collidable))
     {
-        collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+        collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
     }
 }
 ```
@@ -830,7 +830,7 @@ public override void OnCreatedComponent(IComponent c)
 {
     if (components.Add(c.gameObject, out IDestructible destructible, out CollisionProxy collidable))
     {
-        collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+        collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
     }
 }
 ```
@@ -848,7 +848,7 @@ class DestructionSystem : BaseSystem
     {
         if (components.Add(c.gameObject, out IDestructible destructible, out CollisionProxy collidable))
         {
-            collisionEvents[collidable.onEnter] = OnCollision(destructible, collision);
+            collisionEvents[collidable.onEnter] = collision => OnCollision(destructible, collision);
         }
     }
 
@@ -1036,7 +1036,7 @@ See: [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## API Reference
 
-See: [Documentation~/GoCS.md](./Documentation~/GoCS.md)
+See: [API Reference](./Documentation~/API/Lazlo-Gocs.md)
 
 ## Development Status
 

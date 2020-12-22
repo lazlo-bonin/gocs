@@ -6,12 +6,17 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Represents an event with arguments.
-	/// Events support assigning handlers and invoking from anywhere. 
+	/// <para>
+	/// Events support assigning handlers and invoking from anywhere.
+	/// </para> 
 	/// </summary>
+	/// 
 	/// <remarks>
 	/// Use an arguments struct or class if you need to pass multiple arguments.
 	/// </remarks>
+	///
 	/// <typeparam name="TArgs">The type of argument.</typeparam>
+	/// 
 	/// <seealso cref="Event"/>
 	public sealed class Event<TArgs>
 	{
@@ -29,7 +34,7 @@ namespace Lazlo.Gocs
 		/// Creates a new event with a specified handler handler.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public Event(Action<TArgs> handler) : this()
+		public Event(in Action<TArgs> handler) : this()
 		{
 			AddHandler(handler);
 		}
@@ -38,7 +43,7 @@ namespace Lazlo.Gocs
 		/// Adds a handler to the event.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public void AddHandler(Action<TArgs> handler)
+		public void AddHandler(in Action<TArgs> handler)
 		{
 			if (handler == null)
 			{
@@ -52,7 +57,7 @@ namespace Lazlo.Gocs
 		/// Removes a handler from the event.
 		/// </summary>
 		/// <param name="handler">The event handler.</param>
-		public void RemoveHandler(Action<TArgs> handler)
+		public void RemoveHandler(in Action<TArgs> handler)
 		{
 			if (handler == null)
 			{
@@ -66,7 +71,7 @@ namespace Lazlo.Gocs
 		/// Invokes every handler on the event.
 		/// </summary>
 		/// <param name="args">The event arguments.</param>
-		public void Invoke(TArgs args)
+		public void Invoke(in TArgs args)
 		{
 			foreach (var handler in handlers)
 			{

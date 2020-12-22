@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using UnityEngine;
 using UnityEngine.Profiling;
 
 namespace Lazlo.Gocs.Benchmark
@@ -14,18 +17,41 @@ namespace Lazlo.Gocs.Benchmark
 	{
 		private readonly SystemComponents<BenchmarkComponent1, BenchmarkComponent2> components = new SystemComponents<BenchmarkComponent1, BenchmarkComponent2>();
 
-		public int count = 1000;
+		private const int COUNT = 10_000;
+		private const double _NANO_TO_MILLI = 0.000001;
 
 		private int objective;
 
 		private int tally;
 
-		public override void OnCreatedComponent(IComponent component)
+		private uint frameCount;
+		
+		private CustomSampler 
+		    systemQuerySampler, 
+		    worldManagedQuerySampler, 
+		    worldNativeQuerySampler;
+		
+		private Recorder 
+		    systemQueryRecorder, 
+		    worldManagedQueryRecorder, 
+		    worldNativeQueryRecorder;
+		
+		[SerializeField] private List<long> 
+			systemQueryTimes,
+			worldManagedQueryTimes,
+			worldNativeQueryTimes;
+
+		[SerializeField] private double
+			systemQueryAverage,
+			worldManagedQueryAverage,
+			worldNativeQueryAverage;
+
+		public override void OnCreatedComponent(in IComponent component)
 		{
 			components.Add(component.gameObject);
 		}
 
-		public override void OnDestroyingComponent(IComponent component)
+		public override void OnDestroyedComponent(in IComponent component)
 		{
 			components.Remove(component.gameObject);
 		}
@@ -33,11 +59,12 @@ namespace Lazlo.Gocs.Benchmark
 		private void Start()
 		{
 			Spawn();
+			CreateSamplers();
 		}
 
 		private void Spawn()
 		{
-			for (var i = 0; i < count; i++)
+			for (var i = 0; i < COUNT; i++)
 			{
 				var go = new GameObject();
 				go.AddComponent<BenchmarkComponent1>();
@@ -49,60 +76,104 @@ namespace Lazlo.Gocs.Benchmark
 				}
 			}
 		}
+		
+		private void CreateSamplers()
+		{
+		    systemQuerySampler = CustomSampler.Create(name: "System Query");
+		    worldManagedQuerySampler = CustomSampler.Create(name: "World Query (Managed)");
+		    worldNativeQuerySampler = CustomSampler.Create(name: "World Query (Native)");
+		    
+            systemQueryRecorder = systemQuerySampler.GetRecorder();
+            if (systemQueryRecorder.isValid)
+            {
+                systemQueryRecorder.enabled = true;
+            }
+            
+            worldManagedQueryRecorder = worldManagedQuerySampler.GetRecorder();
+            if (worldManagedQueryRecorder.isValid)
+            {
+                systemQueryRecorder.enabled = true;
+            }
+                        
+            worldNativeQueryRecorder = worldNativeQuerySampler.GetRecorder();
+            if (worldNativeQueryRecorder.isValid)
+            {
+                worldNativeQueryRecorder.enabled = true;
+            }
+		}
 
-		void Update()
+		private void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				Spawn();
 			}
 
-			tally = 0;
-			Profiler.BeginSample("System Query");
-			SystemQuery();
-			Profiler.EndSample();
-			Debug.Assert(tally == objective);
-
-			tally = 0;
-			Profiler.BeginSample("Managed Query");
-			ManagedQuery();
-			Profiler.EndSample();
-			Debug.Assert(tally == objective);
-
-			tally = 0;
-			Profiler.BeginSample("Native Query");
 			NativeQuery();
-			Profiler.EndSample();
-			Debug.Assert(tally == objective);
+			ManagedQuery();
+			SystemQuery();
 		}
 
-		void SystemQuery()
+		private void SystemQuery()
 		{
-			foreach (var (component1, component2) in components)
+			tally = 0;
+			
+			systemQuerySampler.Begin();
+			foreach (var (__component1, component2) in components)
 			{
-				IncreaseTally(component1, component2);
+				tally++;
 			}
+			systemQuerySampler.End();
+
+			if (systemQueryRecorder.isValid)
+			{
+				systemQueryTimes.Add(systemQueryRecorder.elapsedNanoseconds);	
+			}
+			systemQueryAverage = systemQueryTimes.Average() * _NANO_TO_MILLI;
+			
+			Debug.Assert(condition: tally == objective);
+			
+			
 		}
 
-		void ManagedQuery()
+		private void ManagedQuery()
 		{
+			tally = 0;
+			
+			worldManagedQuerySampler.Begin();
 			foreach (var (component1, component2) in World.Query<BenchmarkComponent1, BenchmarkComponent2>())
 			{
-				IncreaseTally(component1, component2);
+				tally++;
 			}
-		}
+			worldManagedQuerySampler.End();
 
-		void NativeQuery()
-		{
-			foreach (var (component1, component2) in World.Query<BenchmarkComponent1, BenchmarkComponent2>(true))
+			if (worldManagedQueryRecorder.isValid)
 			{
-				IncreaseTally(component1, component2);
+				worldManagedQueryTimes.Add(worldManagedQueryRecorder.elapsedNanoseconds);	
 			}
+			worldManagedQueryAverage = worldManagedQueryTimes.Average() * _NANO_TO_MILLI;
+			
+			Debug.Assert(condition: tally == objective);
 		}
 
-		void IncreaseTally(BenchmarkComponent1 component1, BenchmarkComponent2 component2)
+		private void NativeQuery()
 		{
-			tally++;
+			tally = 0;
+			
+			worldNativeQuerySampler.Begin();
+			foreach (var (component1, component2) in World.Query<BenchmarkComponent1, BenchmarkComponent2>(forceNative: true))
+			{
+				tally++;
+			}
+			worldNativeQuerySampler.End();
+
+			if (worldNativeQueryRecorder.isValid)
+			{
+				worldNativeQueryTimes.Add(worldNativeQueryRecorder.elapsedNanoseconds);	
+			}
+			worldNativeQueryAverage = worldNativeQueryTimes.Average() * _NANO_TO_MILLI;
+			
+			Debug.Assert(condition: tally == objective);
 		}
 	}
 }

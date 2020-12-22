@@ -6,12 +6,18 @@ namespace Lazlo.Gocs
 {
 	/// <summary>
 	/// Holds the results from a world component query.
-	/// Use this in a <code>foreach</code> loop to enumerate over the tuples of components.
+	/// <para>
+	/// Use this in a foreach loop to enumerate over the tuples of components.
+	/// </para>
 	/// </summary>
+	/// 
 	/// <remarks>
 	/// This enumerable does not allocate memory when enumerating.
+	/// <para>
 	/// However, it is disposed after a single enumeration and cannot be re-enumerated.
+	/// </para>
 	/// </remarks>
+	/// 
 	/// <typeparam name="T">The type of results, either a component or a tuple of components.</typeparam>
 	public sealed class QueryResult<T> : IEnumerable<T>, IPoolable, IDisposable
 	{
@@ -21,7 +27,7 @@ namespace Lazlo.Gocs
 
 		private QueryResult() { }
 
-		internal void Add(T result)
+		internal void Add(in T result)
 		{
 			list.Add(result);
 		}
@@ -72,7 +78,7 @@ namespace Lazlo.Gocs
 
 			private bool exceeded;
 
-			public Enumerator(QueryResult<T> parent) : this()
+			public Enumerator(in QueryResult<T> parent) : this()
 			{
 				if (parent.isDisposed)
 				{
